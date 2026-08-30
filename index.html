@@ -57,6 +57,8 @@
     --body:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
     --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
     --shadow:0 18px 50px rgba(0,0,0,.45);
+    /* one spacing scale, used everywhere, so the rhythm is decided once */
+    --s1:8px; --s2:14px; --s3:22px; --s4:34px; --s5:52px; --s6:78px; --s7:110px; --s8:150px;
     --meta:#4E8CFF; --google:#F4B942; --tiktok:#2AE5D8; --snap:#FFE14D;
   }
 
@@ -77,8 +79,9 @@
   h3{font-size:19px;line-height:1.22;letter-spacing:-.015em}
   h2 em,h1 em{font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.012em}
   p{margin:0 0 14px}
-  section{padding:78px 0;border-top:1px solid var(--line)}
-  @media(min-width:900px){section{padding:112px 0}}
+  section{padding:var(--s6) 0}
+  @media(min-width:900px){section{padding:var(--s7) 0}}
+  section + section{border-top:1px solid var(--line2)}
   .say{font-size:18px;color:var(--muted);max-width:38ch;margin-top:20px;line-height:1.5}
   @media(min-width:720px){.say{font-size:20px}}
   .say b{color:var(--ink);font-weight:600}
@@ -87,8 +90,11 @@
   .tiny b{color:var(--muted)}
 
   /* ---------- hero ---------- */
-  .hero{padding:26px 0 68px;position:relative;border-top:0}
-  @media(min-width:900px){.hero{padding:34px 0 92px}}
+  .hero{padding:22px 0 var(--s6);position:relative;border-top:0}
+  @media(min-width:900px){.hero{padding:30px 0 var(--s6);min-height:min(880px,94vh);display:flex;flex-direction:column}}
+  .hero .wrap{display:flex;flex-direction:column;flex:1;width:100%}
+  .heromid{margin:var(--s5) 0 auto}
+  @media(min-width:900px){.heromid{margin:var(--s7) 0 auto}}
   .mecta{margin-top:12px !important}
   .mecta a{font-family:var(--mono);font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--amber)}
   .mecta a:hover{color:var(--amber)}
@@ -106,20 +112,28 @@
   .ratebar input:focus{outline:0;border-color:var(--amber)}
   .ratebar b{color:var(--muted);font-weight:400}
   .topline a:hover{border-color:var(--amber);color:var(--amber)}
-  .herogrid{position:relative;display:grid;grid-template-columns:1fr;gap:30px;align-items:end}
-  @media(min-width:900px){.herogrid{grid-template-columns:1fr 268px;gap:60px}}
+  /* colophon: name, sectors and number on one rule at the foot of the hero.
+     Replaces the floating side column that was colliding with the creed. */
+  .colo{display:grid;grid-template-columns:1fr;gap:var(--s3);margin-top:var(--s5);
+    padding-top:var(--s3);border-top:1px solid var(--line)}
+  @media(min-width:820px){.colo{grid-template-columns:1.25fr 1fr .85fr;gap:var(--s5);align-items:start}}
+  .colo .ct{font-size:12.5px;color:var(--faint);margin:0 0 var(--s1);letter-spacing:.02em}
+  .colo p{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+  .colo .nm{font-family:var(--disp);font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+  .colo a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--amber);font-family:var(--mono);font-size:14px}
+  .colo a:hover{color:var(--amber)}
   @media(max-width:860px){.herogrid{grid-template-columns:1fr}}
   .me{margin:0;border-left:1px solid var(--line);padding-left:20px}
   .me p{font-size:14.5px;color:var(--muted);margin:0;line-height:1.55}
   .me p b{font-family:var(--disp);color:var(--ink);font-size:17px;font-weight:700;letter-spacing:-.02em}
   .me p + p{margin-top:8px}
-  h1{position:relative;font-size:42px;line-height:1.0;letter-spacing:-.04em;max-width:15ch}
-  @media(min-width:720px){h1{font-size:64px}}
-  @media(min-width:1000px){h1{font-size:80px}}
+  h1{position:relative;font-size:40px;line-height:1.02;letter-spacing:-.04em;max-width:18ch}
+  @media(min-width:720px){h1{font-size:58px}}
+  @media(min-width:1000px){h1{font-size:72px;max-width:22ch}}
   h1 .a{color:var(--amber)}
   h1 .t{color:var(--ink);font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.02em}
-  .hsub{position:relative;font-size:18px;color:var(--muted);max-width:42ch;margin-top:24px;line-height:1.5}
-  @media(min-width:720px){.hsub{font-size:20px}}
+  .hsub{position:relative;font-size:19px;color:var(--muted);max-width:40ch;margin-top:var(--s3);line-height:1.5}
+  @media(min-width:720px){.hsub{font-size:22px;margin-top:var(--s4)}}
 
   .strip{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:clamp(40px,6vw,64px);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--line)}
   @media(max-width:700px){.strip{grid-template-columns:1fr}}
@@ -129,7 +143,7 @@
   .strip .s:nth-child(3) .n{color:var(--amber)}
   .strip .l{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px;line-height:1.5}
 
-  .btns{position:relative;display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+  .btns{position:relative;display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--s5)}
   .btn{font-family:var(--body);font-size:16px;letter-spacing:-.005em;text-decoration:none;padding:14px 24px;border-radius:3px;font-weight:600;transition:.18s;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
   .btn.p{background:var(--amber);color:#07060A;border-color:var(--amber)}
   .btn.p:hover{filter:brightness(1.1);color:#07060A}
@@ -266,6 +280,48 @@
 
   .warnbar{margin-top:30px;background:rgba(255,140,59,.07);border:1px solid rgba(255,140,59,.3);border-left:3px solid var(--amber);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.55;color:var(--muted);max-width:78ch}
   .warnbar b{color:var(--ink)}
+
+  /* ---------- chapter structure ----------
+     Fourteen sections all weighted the same gave no sense of place. They are
+     now grouped into five acts, each announced, so the reader always knows
+     where they are and how much is left. */
+  .act{border-top:1px solid var(--line);background:var(--surface);scroll-margin-top:60px}
+  .actin{display:grid;grid-template-columns:1fr;gap:var(--s2);padding:var(--s5) 0}
+  @media(min-width:820px){.actin{grid-template-columns:104px 1fr;gap:var(--s5);padding:var(--s6) 0;align-items:start}}
+  .actn{font-family:var(--disp);font-size:46px;font-weight:800;letter-spacing:-.04em;line-height:.82;
+    color:transparent;-webkit-text-stroke:1px var(--amber)}
+  .acth{font-family:var(--disp);font-size:29px;font-weight:700;letter-spacing:-.03em;line-height:1.08;margin:0;color:var(--ink)}
+  @media(min-width:820px){.acth{font-size:38px}}
+  .actd{margin:var(--s2) 0 0;font-size:17px;line-height:1.55;color:var(--muted);max-width:50ch}
+
+  /* thin progress line, and a chapter bar that appears once the hero is behind you */
+  .prog{position:fixed;top:0;left:0;height:2px;background:var(--amber);width:0;z-index:60;transition:width .1s linear}
+  .chapnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(7,6,10,.88);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+    transform:translateY(-100%);transition:transform .28s ease}
+  .chapnav.on{transform:none}
+  .chapnav .in{max-width:1060px;margin:0 auto;padding:0 26px;display:flex;align-items:center;gap:var(--s3);height:52px;overflow-x:auto;scrollbar-width:none}
+  .chapnav .in::-webkit-scrollbar{display:none}
+  @media(min-width:900px){.chapnav .in{padding:0 40px}}
+  .chapnav a{color:var(--faint);text-decoration:none;font-size:13.5px;white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;transition:.18s}
+  .chapnav a:hover{color:var(--ink)}
+  .chapnav a.on{color:var(--amber);border-bottom-color:var(--amber)}
+  .chapnav .cta{margin-left:auto;flex:none;background:var(--amber);color:#07060A;border-radius:3px;
+    padding:8px 14px;font-weight:600;font-size:13.5px;border-bottom:0}
+  .chapnav .cta:hover{color:#07060A;filter:brightness(1.08)}
+  @media(max-width:700px){.chapnav .cta{display:none}}
+
+  /* the promise, given its own band and room to be read.
+     Padding lives on the container so both columns share one baseline. */
+  .creedband{border-top:1px solid var(--line);background:var(--surface)}
+  .creedgrid{padding:var(--s6) 0}
+  @media(min-width:820px){.creedgrid{padding:var(--s7) 0;display:grid;grid-template-columns:1.05fr 1fr;gap:var(--s5);align-items:end}}
+  .creed{margin:0;max-width:24ch;font-family:var(--disp);font-weight:700;
+    font-size:27px;line-height:1.22;letter-spacing:-.028em;color:var(--ink)}
+  @media(min-width:820px){.creed{font-size:36px}}
+  .creed em{font-family:var(--serif);font-style:italic;font-weight:600}
+  .creedsub{margin:var(--s3) 0 0;max-width:46ch;font-size:16px;line-height:1.6;color:var(--muted)}
+  @media(min-width:820px){.creedsub{margin:0 0 5px}}
 
   .own{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
   .own-r{display:grid;grid-template-columns:1fr 180px;gap:16px;padding:15px 22px;border-top:1px solid var(--line2);align-items:center;font-size:15px}
@@ -660,6 +716,18 @@
 </head>
 <body>
 
+<div class="prog" id="prog"></div>
+<nav class="chapnav" id="chapnav" aria-label="Sections">
+  <div class="in">
+    <a href="#act1" data-a="act1">01 What I do</a>
+    <a href="#act2" data-a="act2">02 Proof</a>
+    <a href="#act3" data-a="act3">03 Cost</a>
+    <a href="#act4" data-a="act4">04 The work</a>
+    <a href="#act5" data-a="act5">05 Terms</a>
+    <a class="cta" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20saw%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a>
+  </div>
+</nav>
+
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="wrap">
@@ -680,30 +748,56 @@
       </span>
     </div>
 
-    <div class="herogrid">
-      <div>
-        <h1>I shoot your ads.<br>I <span class="a">run</span> your ads.<br>You see <span class="t">every number</span>.</h1>
-        <p class="hsub">Most agencies do one and quietly outsource the other. That gap is where your money goes missing.</p>
-        <p class="hnum">Apparel &middot; jewellery &middot; hospitality &middot; clinics &middot; showrooms &middot; property</p>
-        <div class="btns">
-          <a class="btn p" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20saw%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">Message me on WhatsApp</a>
-          <a class="btn" href="#bills">What it costs</a>
-        </div>
-      </div>
-      <div class="me">
-        <p><b>Yedukrishna&nbsp;Suresh</b></p>
-        <p>Eight years behind a camera. Four of them running the ad accounts as well,
-          because handing the footage over and hoping was costing my clients money.</p>
-        <p class="mecta"><a href="tel:+919746679720">+91&nbsp;97466&nbsp;79720</a></p>
+    <div class="heromid">
+      <h1>I shoot your ads.<br>I <span class="a">run</span> your ads.<br>You see <span class="t">every number</span>.</h1>
+      <p class="hsub">Most agencies do one and quietly outsource the other. That gap is where your money goes missing.</p>
+      <div class="btns">
+        <a class="btn p" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20saw%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">Message me on WhatsApp</a>
+        <a class="btn" href="#act1">See how it works</a>
       </div>
     </div>
 
-    <p class="creed">The person who shoots it is the person who runs it. There is no account manager
-      between us, your ad budget never passes through my account, and my fee is a separate bill that
-      does not move when your budget does.</p>
+    <div class="colo">
+      <div>
+        <p class="ct">Who you would be working with</p>
+        <p class="nm">Yedukrishna Suresh</p>
+        <p>Eight years behind a camera. Four of them running the ad accounts as well, because handing
+          the footage over and hoping was costing my clients money.</p>
+      </div>
+      <div>
+        <p class="ct">Who I work with</p>
+        <p>Apparel and jewellery &middot; hospitality and restaurants &middot; clinics and studios &middot;
+          showrooms and retail &middot; events &middot; property</p>
+      </div>
+      <div>
+        <p class="ct">Where, and how to reach me</p>
+        <p>Bengaluru &middot; Kochi &middot; Dubai</p>
+        <p style="margin-top:10px"><a href="tel:+919746679720">+91&nbsp;97466&nbsp;79720</a></p>
+      </div>
+    </div>
 
   </div>
 </header>
+
+<!-- ============ CREED ============ -->
+<div class="creedband">
+  <div class="wrap creedgrid">
+    <p class="creed">The person who shoots it is the person who <em>runs</em> it.</p>
+    <p class="creedsub">There is no account manager between us. Your ad budget never passes through my
+      account, and my fee is a separate bill that does not move when your budget does. Everything opens
+      in your name on day one, and you can take it back in two clicks.</p>
+  </div>
+</div>
+
+<div class="act" id="act1">
+  <div class="wrap actin">
+    <div class="actn">01</div>
+    <div>
+      <h2 class="acth">What I actually do</h2>
+      <p class="actd">Four things, every month, for businesses that need to be seen and then need the phone to ring.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ WHAT I DO ============ -->
 <section id="what">
@@ -737,6 +831,16 @@
       and who owns the account it runs from.</p>
   </div>
 </section>
+
+<div class="act" id="act2">
+  <div class="wrap actin">
+    <div class="actn">02</div>
+    <div>
+      <h2 class="acth">Whether to believe me</h2>
+      <p class="actd">Numbers you can go and count yourself, and the ad you would be buying, built in front of you.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ PROOF ============ -->
 <section id="proof">
@@ -927,6 +1031,16 @@
     <p class="say w">Every one of these comes off the same shoot day. <b>One morning at your site, cut for a Reel, a feed post and a search ad</b> &mdash; not three separate productions billed three times.</p>
   </div>
 </section>
+
+<div class="act" id="act3">
+  <div class="wrap actin">
+    <div class="actn">03</div>
+    <div>
+      <h2 class="acth">What it costs, and what it buys</h2>
+      <p class="actd">Two separate bills, an honest comparison against what you already spend, and a planner you can argue with.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ BILLS ============ -->
 <section id="bills">
@@ -1229,6 +1343,16 @@
   </div>
 </section>
 
+<div class="act" id="act4">
+  <div class="wrap actin">
+    <div class="actn">04</div>
+    <div>
+      <h2 class="acth">How the work gets made</h2>
+      <p class="actd">What goes on camera, what your competitors are already running, and how to reach a buyer who lives abroad.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ============ CREATIVE ============ -->
 <section id="creative">
   <div class="wrap">
@@ -1437,6 +1561,16 @@
       for scale only. <b>The addressable audience is smaller</b>, and the account shows the real number.</p>
   </div>
 </section>
+
+<div class="act" id="act5">
+  <div class="wrap actin">
+    <div class="actn">05</div>
+    <div>
+      <h2 class="acth">Your money and your account</h2>
+      <p class="actd">Who owns what, the questions you are probably about to ask, and every number on this page, sourced.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ MONEY ============ -->
 <section id="money">
@@ -2700,6 +2834,41 @@
     var el = $(id); if (el) el.addEventListener('change', draw);
   });
   draw();
+})();
+</script>
+
+<script>
+/* Progress line, and a chapter bar that appears once the hero is behind you.
+   Long pages make people anxious about how much is left; showing them costs
+   two elements and buys a lot of patience. */
+(function(){
+  "use strict";
+  var bar = document.getElementById('prog');
+  var nav = document.getElementById('chapnav');
+  var links = [].slice.call(nav.querySelectorAll('a[data-a]'));
+  var acts = links.map(function(a){ return document.getElementById(a.getAttribute('data-a')); });
+  var hero = document.querySelector('.hero');
+  var tick = false;
+
+  function update(){
+    tick = false;
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, y / max * 100) : 0) + '%';
+
+    nav.classList.toggle('on', y > (hero ? hero.offsetHeight * 0.75 : 400));
+
+    var cur = -1;
+    for (var i = 0; i < acts.length; i++){
+      if (acts[i] && acts[i].getBoundingClientRect().top <= 90) cur = i;
+    }
+    links.forEach(function(a, i){ a.classList.toggle('on', i === cur); });
+  }
+  window.addEventListener('scroll', function(){
+    if (!tick){ tick = true; window.requestAnimationFrame(update); }
+  }, {passive:true});
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 
