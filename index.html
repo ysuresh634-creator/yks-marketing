@@ -461,6 +461,44 @@
   /* Portal-vs-owned comparison, drawn as two dashboards. The portal side is
      deliberately generic chrome — mocking up a named portal's back-office to
      argue against that portal would be fabricating their records, not teaching. */
+  /* ---- Ad Library mock + the read that comes off it ---- */
+  .allib{background:#fff;padding:14px}
+  .alsearch{display:flex;align-items:center;gap:9px;border:1px solid #dfe1e5;border-radius:999px;padding:9px 14px;background:#f7f8fa;margin-bottom:12px}
+  .alsearch svg{width:14px;height:14px;stroke:#65676b;fill:none;stroke-width:2.2;flex:none}
+  .alsearch span{font-size:13px;color:#1c1e21;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .alcount{font-size:12.5px;font-weight:700;color:#1c1e21;margin:0 0 11px}
+  .alcards{display:grid;grid-template-columns:1fr;gap:11px}
+  @media(min-width:700px){.alcards{grid-template-columns:repeat(3,1fr)}}
+  .alcard{border:1px solid #dadde1;border-radius:7px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .alstat{display:flex;align-items:center;gap:6px;padding:9px 11px 0;font-size:11.5px;font-weight:600;color:#31a24c}
+  .alstat::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+  .alid{padding:2px 11px 0;font-size:10.5px;color:#65676b}
+  .alran{padding:5px 11px 9px;font-size:11px;color:#1c1e21;font-weight:600}
+  .alwho{display:flex;align-items:center;gap:7px;padding:9px 11px;border-top:1px solid #ebedf0}
+  .alwho i{width:22px;height:22px;border-radius:50%;background:#dfe3e8;display:grid;place-items:center;font-size:9px;font-weight:700;color:#65676b;flex:none}
+  .alwho b{font-size:12px;color:#1c1e21;font-weight:600}
+  .alcopy{padding:0 11px 11px;font-size:12px;color:#1c1e21;line-height:1.4}
+  .alcreative{margin:0 11px 11px;border-radius:5px;background:linear-gradient(150deg,#e9edf2,#dfe4ea);aspect-ratio:4/3;display:grid;place-items:center;padding:12px}
+  .alcreative span{font-size:12.5px;font-weight:700;color:#5a6270;text-align:center;line-height:1.3}
+  .alplat{padding:0 11px 11px;font-size:10.5px;color:#65676b}
+
+  .rivtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:30px}
+  .rivtable th{text-align:left;padding:0 14px 11px 0;font-size:13px;color:var(--faint);font-weight:400;border-bottom:1px solid var(--line)}
+  .rivtable td{padding:15px 14px 15px 0;border-bottom:1px solid var(--line2);color:var(--muted);line-height:1.5;vertical-align:top}
+  .rivtable td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+  .rivtable .run{color:var(--amber);font-weight:600;white-space:nowrap}
+  @media(max-width:720px){
+    .rivtable,.rivtable tbody,.rivtable tr,.rivtable td{display:block;width:100%}
+    .rivtable thead{display:none}
+    .rivtable tr{padding:14px 0;border-bottom:1px solid var(--line2)}
+    .rivtable td{border:0;padding:2px 0}
+    .rivtable td::before{content:attr(data-l) ' ';color:var(--faint)}
+    .rivtable td:first-child::before{content:''}
+  }
+  .gapbox{margin-top:28px;border-left:2px solid var(--amber);padding:2px 0 2px 20px;max-width:60ch}
+  .gapbox .gl{font-size:13px;color:var(--faint);margin-bottom:6px}
+  .gapbox p{font-size:18px;line-height:1.5;color:var(--ink);margin:0;font-weight:600;letter-spacing:-.01em}
+
   .vsshots{display:grid;grid-template-columns:1fr;gap:16px;margin-top:30px;align-items:start}
   @media(min-width:940px){.vsshots{grid-template-columns:1fr 1fr;gap:18px}}
   .vsshots .shotframe{box-shadow:0 14px 40px rgba(0,0,0,.45)}
@@ -1150,8 +1188,78 @@
 
     <div class="prose">
       <p><b>One shoot, cut several ways.</b> The same walkthrough becomes a different ad by changing the first three seconds and the caption. That is where variety comes from. Not from filming your product forty different ways, which nobody can do, and which you should not believe anyone who claims.</p>
-      <p><b>Your competitors&rsquo; ads are public, and I read them every week.</b> Meta and Google publish every ad currently running, searchable by advertiser, free, no login. Most businesses have never opened it. An ad that has been live four months is somebody else&rsquo;s proven winner, paid for with their budget.</p>
     </div>
+  </div>
+</section>
+
+<!-- ============ RIVALS ============ -->
+<section id="rivals">
+  <div class="wrap">
+    <h2>Every ad your competitors run<br>is <em>public</em>. Almost nobody looks.</h2>
+    <p class="say">Meta and Google publish every advert currently running, searchable by the advertiser&rsquo;s
+      name, free, no login, no tool to buy. Most businesses have never opened it once.</p>
+    <p class="say w"><b>An ad that has been live for four months is somebody else&rsquo;s proven winner</b> &mdash;
+      they paid to find out it works, and you can read it this afternoon.</p>
+
+    <div class="simwrap">
+      <div class="simbar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span>Ad Library</span>
+        <span class="simbadge">Simulated &mdash; invented advertisers</span>
+      </div>
+
+      <div class="simtabs" role="tablist">
+        <button id="rvProperty" role="tab" aria-selected="true">Property</button>
+        <button id="rvJewel" role="tab" aria-selected="false">Jewellery</button>
+        <button id="rvClinic" role="tab" aria-selected="false">Clinic</button>
+        <button id="rvFood" role="tab" aria-selected="false">Restaurant</button>
+      </div>
+
+      <div class="simbody" style="padding:18px 16px 20px;background:var(--bg)">
+        <div class="shotframe">
+          <div class="brchrome">
+            <div class="brdots"><i></i><i></i><i></i></div>
+            <div class="brtab"><i style="background:#0064e0"></i>Ad Library</div>
+          </div>
+          <div class="braddr">
+            <span class="brurl">facebook.com/ads/library</span>
+            <span class="simstamp">Simulated</span>
+          </div>
+          <div class="allib">
+            <div class="alsearch">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+              <span id="rvQuery">India &middot; All ads &middot; &ldquo;property&rdquo;</span>
+            </div>
+            <p class="alcount" id="rvCount">~24 results</p>
+            <div class="alcards" id="rvCards"></div>
+          </div>
+          <div class="wmark"></div>
+        </div>
+      </div>
+
+      <div class="simfoot"><b>The interface is real, the advertisers are not.</b> I have invented these three
+        so as not to put words in a named business&rsquo;s mouth. <b><a href="https://www.facebook.com/ads/library/" target="_blank" rel="noopener">Open the real Ad Library</a></b>
+        and type in your own competitors &mdash; it costs nothing and takes a minute. That is the point of this
+        section: not my screenshot, your search.</div>
+    </div>
+
+    <h3 style="margin-top:56px;font-size:23px">And then the part they are not doing.</h3>
+    <p class="say w" style="margin-top:12px">Reading the ads is the easy half. The half worth paying for is
+      working out what the whole set has in common, because <b>that is the space nobody is occupying.</b></p>
+
+    <table class="rivtable">
+      <thead><tr><th>Advertiser</th><th>Longest run</th><th>The angle they use</th><th>What none of them say</th></tr></thead>
+      <tbody id="rvRows"></tbody>
+    </table>
+
+    <div class="gapbox">
+      <div class="gl">The gap, on this set</div>
+      <p id="rvGap">&mdash;</p>
+    </div>
+
+    <p class="say w" style="margin-top:30px">That is one afternoon of work and it decides what we shoot on day
+      one. <b>It is also the cheapest research you will ever buy</b>, because your competitors have already paid
+      for it.</p>
   </div>
 </section>
 
@@ -2157,6 +2265,124 @@
   });
 
   draw();
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------
+   Competitor read. The Ad Library interface is drawn from the real
+   one so a business owner recognises it; the advertisers are
+   invented on purpose. Putting fabricated ad copy in a named real
+   company's mouth would be inventing a record about them, which is
+   a different thing from teaching someone to use a public tool.
+   The section links to the actual Ad Library so they run their own.
+----------------------------------------------------------------*/
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+
+  var SETS = {
+    property: {
+      tab:'rvProperty', q:'India · All ads · &ldquo;apartments&rdquo;', count:'~24 results',
+      ads:[
+        {who:'Skyline Estates', ran:'6 August 2025', copy:'Luxury 2 &amp; 3 BHK. Clubhouse, infinity pool, 40+ amenities. Book a site visit today!', big:'40+ AMENITIES<br>BOOK NOW', id:'812443907156288'},
+        {who:'Meridian Realty',  ran:'2 October 2025', copy:'Limited units left. Pre-launch price valid till month end. Enquire now.', big:'PRE-LAUNCH<br>PRICE', id:'604118392770415'},
+        {who:'Crestview Homes',  ran:'19 November 2025', copy:'Ready to move. Zero brokerage. EMI starts &#8377;48,000/month.', big:'ZERO<br>BROKERAGE', id:'739205618403927'}
+      ],
+      rows:[
+        ['Skyline Estates','6 months','Amenity list, drone shot of the clubhouse','What the commute is actually like at 9am'],
+        ['Meridian Realty','2 months','Scarcity &mdash; &ldquo;limited units&rdquo;, deadline pricing','Anything about the builder&rsquo;s delivery record'],
+        ['Crestview Homes','3 weeks','Price and EMI, zero brokerage','What the neighbourhood is like to live in']
+      ],
+      gap:'All three sell the building. Not one of them shows the street, the commute or a resident who already lives there — which is what a buyer is actually anxious about. An honest locality walkthrough has no competition in this set.'
+    },
+    jewel: {
+      tab:'rvJewel', q:'India · All ads · &ldquo;jewellery&rdquo;', count:'~31 results',
+      ads:[
+        {who:'Aurum &amp; Co.',   ran:'12 September 2025', copy:'Festive collection is live. Flat 20% off making charges this week only.', big:'20% OFF<br>MAKING CHARGES', id:'928471035562810'},
+        {who:'Kanaka Jewels',  ran:'28 October 2025', copy:'Bridal sets from &#8377;85,000. Book a private appointment at our showroom.', big:'BRIDAL<br>FROM &#8377;85,000', id:'517390264881573'},
+        {who:'Rivaaz Fine',    ran:'4 December 2025', copy:'Certified diamonds. Lifetime exchange. Visit us this weekend.', big:'CERTIFIED<br>DIAMONDS', id:'660238145097364'}
+      ],
+      rows:[
+        ['Aurum &amp; Co.','5 months','Discount on making charges, festival timing','Who makes the pieces, or how'],
+        ['Kanaka Jewels','3 months','Price entry point, bridal appointment','What the appointment is actually like'],
+        ['Rivaaz Fine','1 month','Certification and exchange policy','Anything with a human face in it']
+      ],
+      gap:'Every advertiser in this set is competing on discount and certification, which is a race the biggest chain always wins. Nobody is showing a pair of hands making something. Craft footage is completely unoccupied here.'
+    },
+    clinic: {
+      tab:'rvClinic', q:'India · All ads · &ldquo;skin clinic&rdquo;', count:'~18 results',
+      ads:[
+        {who:'Lumina Skin',     ran:'21 July 2025', copy:'Say goodbye to acne scars. Book your free consultation today!', big:'BEFORE<br>&amp; AFTER', id:'473916028755142'},
+        {who:'Veda Aesthetics', ran:'9 November 2025', copy:'Laser hair reduction. 6 sessions package. Limited slots this month.', big:'6 SESSIONS<br>PACKAGE', id:'885024713690458'},
+        {who:'Clearline Clinic',ran:'1 December 2025', copy:'Certified dermatologists. Advanced US-FDA approved technology.', big:'US-FDA<br>APPROVED', id:'392648170934825'}
+      ],
+      rows:[
+        ['Lumina Skin','7 months','Before-and-after, free consultation','What the treatment feels like'],
+        ['Veda Aesthetics','3 months','Package pricing, session count','Who the doctor is'],
+        ['Clearline Clinic','1 month','Equipment and credentials','Anything a nervous first-timer needs to hear']
+      ],
+      gap:'The whole set is selling the result, and the result is not what is stopping people booking — nervousness is. Nobody is walking a first-timer through what actually happens in the room. That video would have this category to itself.'
+    },
+    food: {
+      tab:'rvFood', q:'India · All ads · &ldquo;restaurant&rdquo;', count:'~27 results',
+      ads:[
+        {who:'Copperleaf Kitchen', ran:'3 August 2025', copy:'Weekend brunch buffet &#8377;899++. Unlimited starters. Book your table.', big:'BRUNCH<br>&#8377;899++', id:'704283596118370'},
+        {who:'Tamarind House',     ran:'17 October 2025', copy:'New menu launched. Authentic coastal flavours. Order on Swiggy &amp; Zomato.', big:'NEW<br>MENU', id:'241905738264019'},
+        {who:'Sixty Degrees',      ran:'22 November 2025', copy:'Happy hours 5&ndash;8pm. 1+1 on all cocktails. Every day.', big:'1+1<br>COCKTAILS', id:'956137408852761'}
+      ],
+      rows:[
+        ['Copperleaf Kitchen','6 months','Buffet price, unlimited offer','What the room is like to sit in'],
+        ['Tamarind House','3 months','New menu, delivery apps','Any reason to come in rather than order'],
+        ['Sixty Degrees','1 month','Happy hour discount','Who else is going to be there']
+      ],
+      gap:'Everyone is advertising the food and the discount, which is what a delivery app already does better than you. Nobody is showing the room at 8pm on a Friday — and the room is the only thing a delivery app cannot copy.'
+    }
+  };
+
+  var cur = 'property';
+
+  function draw(k){
+    var s = SETS[k]; if (!s) return;
+    cur = k;
+    Object.keys(SETS).forEach(function(o){
+      var b = $(SETS[o].tab); if (b) b.setAttribute('aria-selected', String(o === k));
+    });
+    $('rvQuery').innerHTML = s.q;
+    $('rvCount').textContent = s.count;
+
+    $('rvCards').innerHTML = s.ads.map(function(a){
+      var ini = a.who.replace(/&amp;/g,'').trim().split(/\s+/).slice(0,2)
+                 .map(function(w){ return w[0]; }).join('').toUpperCase();
+      return '<div class="alcard">'+
+        '<div class="alstat">Active</div>'+
+        '<div class="alid">Library ID: ' + a.id + '</div>'+
+        '<div class="alran">Started running on ' + a.ran + '</div>'+
+        '<div class="alwho"><i>'+ini+'</i><b>'+a.who+'</b></div>'+
+        '<div class="alcopy">'+a.copy+'</div>'+
+        '<div class="alcreative"><span>'+a.big+'</span></div>'+
+        '<div class="alplat">Platforms: Facebook, Instagram</div>'+
+        '</div>';
+    }).join('');
+
+    $('rvRows').innerHTML = s.rows.map(function(r){
+      return '<tr>'+
+        '<td>'+r[0]+'</td>'+
+        '<td class="run" data-l="Longest run:">'+r[1]+'</td>'+
+        '<td data-l="Angle:">'+r[2]+'</td>'+
+        '<td data-l="Never say:">'+r[3]+'</td>'+
+        '</tr>';
+    }).join('');
+
+    $('rvGap').textContent = s.gap;
+  }
+
+  Object.keys(SETS).forEach(function(k){
+    var b = $(SETS[k].tab);
+    if (b) b.addEventListener('click', function(){ draw(k); });
+  });
+
+  draw('property');
 })();
 </script>
 
