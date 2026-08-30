@@ -270,19 +270,6 @@
   .warnbar{margin-top:30px;background:rgba(255,140,59,.07);border:1px solid rgba(255,140,59,.3);border-left:3px solid var(--amber);border-radius:12px;padding:18px 22px;font-size:15px;line-height:1.55;color:var(--muted);max-width:78ch}
   .warnbar b{color:var(--ink)}
 
-  /* Work strip. Deliberately not a card grid: images butt against each other
-     with a hairline, captions hang underneath like a contact sheet. */
-  .range{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);margin-top:38px}
-  @media(min-width:820px){.range{grid-template-columns:repeat(4,1fr)}}
-  .range figure{margin:0;background:var(--bg)}
-  .range img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
-  .range figcaption{padding:13px 2px 0;font-size:14px;color:var(--ink);line-height:1.35}
-  .range figcaption span{display:block;font-size:13px;color:var(--faint);margin-top:3px}
-
-  .creed{position:relative;margin:38px 0 0;padding-left:18px;border-left:2px solid var(--amber);
-    max-width:58ch;font-size:16px;line-height:1.6;color:var(--muted)}
-  @media(min-width:900px){.creed{margin-top:52px;font-size:17px}}
-
   .own{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
   .own-r{display:grid;grid-template-columns:1fr 180px;gap:16px;padding:15px 22px;border-top:1px solid var(--line2);align-items:center;font-size:15px}
   .own-r:first-child{border-top:0;background:var(--surface2)}
@@ -630,23 +617,16 @@
 <!-- ============ RANGE ============ -->
 <section id="range">
   <div class="wrap">
-    <h2>What I have been<br>pointing a camera at.</h2>
-    <p class="say">Property is one of them. It is not all of them, and this page is not only about it.</p>
-
-    <div class="range">
-      <figure><img src="assets/fashion.jpg" alt="Fashion shoot" width="760" height="950" loading="lazy" />
-        <figcaption>Apparel &amp; jewellery<span>Bengaluru</span></figcaption></figure>
-      <figure><img src="assets/studio.jpg" alt="Studio portrait" width="760" height="950" loading="lazy" />
-        <figcaption>Studio &amp; lookbook<span>Kochi</span></figcaption></figure>
-      <figure><img src="assets/wedding.jpg" alt="Wedding event coverage" width="760" height="950" loading="lazy" />
-        <figcaption>Events &amp; weddings<span>Kerala</span></figcaption></figure>
-      <figure><img src="assets/portrait.jpg" alt="Hospitality shoot" width="760" height="950" loading="lazy" />
-        <figcaption>Hospitality &amp; lifestyle<span>Wayanad</span></figcaption></figure>
-    </div>
-
-    <p class="say w">Apparel, jewellery, restaurants and resorts, clinics, showrooms, studios, property.
-      <b>The method does not change with the category.</b> Only the hooks do &mdash; and working out which
-      hook belongs to your customer is most of the job.</p>
+    <h2>Property is one of them.<br>It is <em>not</em> all of them.</h2>
+    <p class="say">Apparel and jewellery. Restaurants and resorts. Clinics, showrooms, studios,
+      salons, events. And yes, property &mdash; which is where the worked example further down comes from.</p>
+    <p class="say w"><b>The method does not change with the category.</b> Only the hooks do, and working
+      out which hook belongs to your customer is most of the job. A jeweller and a builder need the same
+      four things from me; they just need completely different things said on camera.</p>
+    <p class="say w" style="color:var(--faint)">You will not find a portfolio wall on this page, on purpose.
+      The photographs live at <a href="https://yksproductions.com/">yksproductions.com</a>.
+      <b>This page is about what happens after the footage exists</b> &mdash; where it runs, what it costs,
+      and who owns the account it runs from.</p>
   </div>
 </section>
 
