@@ -530,6 +530,33 @@
   @media(max-width:760px){.mobar{display:flex} body{padding-bottom:70px}}
   @media print{.mobar,.chapnav,.prog{display:none}}
 
+  /* ---------- case study ---------- */
+  .cases{margin-top:var(--s5);border-top:1px solid var(--line)}
+  .case{display:grid;grid-template-columns:1fr;gap:var(--s2);padding:var(--s4) 0;border-bottom:1px solid var(--line2)}
+  @media(min-width:860px){.case{grid-template-columns:190px 1fr 1fr;gap:var(--s4);align-items:start}}
+  .case .num{font-family:var(--disp);font-size:38px;font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--ink)}
+  .case .numl{font-size:13.5px;color:var(--faint);margin-top:7px;line-height:1.4}
+  .case .wt{font-family:var(--disp);font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:0 0 7px}
+  .case p{margin:0;font-size:15.5px;line-height:1.55;color:var(--muted)}
+  .case p + p{margin-top:9px}
+  .case b{color:var(--ink);font-weight:600}
+  .case a{color:var(--amber)}
+
+  .worth{margin-top:var(--s5);border:1px solid var(--line);border-radius:14px;background:var(--surface);
+    padding:var(--s4) var(--s3)}
+  @media(min-width:760px){.worth{padding:var(--s4)}}
+  .worth h3{font-size:23px;margin:0 0 var(--s2)}
+  .worth p{font-size:16px;line-height:1.6;color:var(--muted);margin:0 0 13px;max-width:64ch}
+  .worth p:last-child{margin-bottom:0}
+  .worth b{color:var(--ink)}
+  .worth .cite{font-size:13.5px;color:var(--faint);line-height:1.55}
+  .worth .cite a{color:var(--muted);text-underline-offset:2px}
+  .wnums{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);margin:var(--s3) 0;border:1px solid var(--line)}
+  @media(min-width:700px){.wnums{grid-template-columns:repeat(3,1fr)}}
+  .wnums div{background:var(--surface);padding:var(--s3)}
+  .wnums b{display:block;font-family:var(--disp);font-size:27px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+  .wnums span{display:block;font-size:14px;color:var(--muted);margin-top:6px;line-height:1.45}
+
   .own{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
   .own-r{display:grid;grid-template-columns:1fr 180px;gap:16px;padding:15px 22px;border-top:1px solid var(--line2);align-items:center;font-size:15px}
   .own-r:first-child{border-top:0;background:var(--surface2)}
@@ -1072,6 +1099,91 @@
     <p class="say w">Paid reach is easy &mdash; anyone with a card can buy it. Making a stranger stop is the hard part, and it is what decides whether your cost per enquiry is &#8377;400 or &#8377;1,200.</p>
 
     <p class="tiny" style="margin-top:24px"><b>What I am not claiming.</b> These are reach numbers, not property leads. I have not run your ads yet, and I would rather show you a smaller number you can verify than a big one you cannot. Once we run, your account is the case study &mdash; and you own it.</p>
+  </div>
+</section>
+
+<!-- ============ CASE ============ -->
+<section id="case">
+  <div class="wrap">
+    <h2>A case study, with the<br>uncomfortable part <em>left in</em>.</h2>
+    <p class="say">Three pieces of work, the numbers they actually did, and what published research says
+      numbers like that are worth in a paid account. <b>Every figure below is either countable on a public
+      profile or carries a link to its source.</b></p>
+
+    <div class="cases">
+      <div class="case">
+        <div><div class="num">49,500+</div><div class="numl">likes, on one reel</div></div>
+        <div>
+          <p class="wt">Collaboration reel &mdash; Cindrebay</p>
+          <p>A collaboration piece made with the design institute, posted to both accounts. It is pinned to
+            my profile, the like count is public, and the collaboration is visible on the post itself.</p>
+        </div>
+        <div><p>A reel does not get to fifty thousand likes because of a budget. It gets there because the
+          first three seconds worked. <b>That is the same mechanism an ad depends on</b>, bought or not.</p></div>
+      </div>
+
+      <div class="case">
+        <div><div class="num">26,600+</div><div class="numl">likes, Kite Beach, Dubai</div></div>
+        <div>
+          <p class="wt">Shoot with @siffsehgal</p>
+          <p>Location shoot in Dubai with a verified creator. Also pinned, also publicly countable, and shot
+            on the same schedule and budget discipline I would bring to your product or your property.</p>
+        </div>
+        <div><p>Two pieces at this level, from one operator, on ordinary shoot days. <b>Not a fluke, and not a
+          studio with fifteen people behind it.</b></p></div>
+      </div>
+
+      <div class="case">
+        <div><div class="num">212,898</div><div class="numl">views in 30 days &middot; 99.4% not followers</div></div>
+        <div>
+          <p class="wt">The account itself</p>
+          <p>One account, 2,891 followers, <b>no ad spend behind any of it</b>. 8,023 accounts engaged,
+            15,699 interactions. <a href="https://www.instagram.com/yks_photoworks" target="_blank" rel="noopener">Open @yks_photoworks</a> and check it.</p>
+        </div>
+        <div><p>The 99.4% is the number that matters. <b>Reaching strangers is precisely what you pay an ad
+          platform to do</b> &mdash; this did it without paying.</p></div>
+      </div>
+    </div>
+
+    <div class="worth">
+      <h3>So what is that worth in money?</h3>
+      <p>Here is where most case studies invent a revenue figure. I am not going to, because I do not have
+        access to anybody else&rsquo;s books &mdash; but the translation can be done honestly, from published
+        numbers, and you can check every one of them.</p>
+
+      <div class="wnums">
+        <div><b id="cs1">&#8377;12,800&ndash;&#8377;25,500</b><span>What buying that same 212,898 cold impressions
+          would cost, at India&rsquo;s published lead-objective CPM of &#8377;60&ndash;120.</span></div>
+        <div><b>64%</b><span>Higher click-through for creator-style creative than studio-produced: 1.8% against
+          1.1% on Meta.</span></div>
+        <div><b>20&ndash;35%</b><span>How far cost per click falls when brands move from polished to
+          authentic-style creative.</span></div>
+      </div>
+
+      <p><b>Put that on a real budget.</b> On &#8377;1,00,000 a month, a 20&ndash;35% lower cost per click is
+        <b>&#8377;20,000 to &#8377;35,000 of your budget buying extra clicks instead of paying more for the same
+        ones</b>. Every month. That is the money in this, and it comes from what is on screen &mdash; not from
+        clever targeting, which everyone has access to.</p>
+
+      <p>It is also why I will not sell you media buying on its own. Two businesses with the same budget and
+        the same targeting can land three or four times apart on cost per enquiry, and <b>the variable is the
+        footage.</b></p>
+
+      <p class="cite">Sources, all opened in a new tab and worth reading yourself:
+        <a href="https://upgrowth.in/instagram-ads-pricing-india-2026/" target="_blank" rel="noopener">Instagram ads cost India 2026, upGrowth</a> ·
+        <a href="https://www.vgraple.com/blog/instagram-ads-india-guide-2026/" target="_blank" rel="noopener">VGraple India CPM benchmarks</a> ·
+        <a href="https://www.finsi.ai/blog/ugc-ads-performance-benchmarks/" target="_blank" rel="noopener">UGC ads performance benchmarks 2026</a> ·
+        <a href="https://www.askneedle.com/blog/ugc-vs-studio-creative-what-converts-better-for-dtc-brands" target="_blank" rel="noopener">UGC vs studio creative for D2C</a> ·
+        <a href="https://secure.businesswire.com/news/home/20251015243482/en/Emplifi-Reveals-User-Generated-Content-Delivers-10X-Higher-Conversion-Rates" target="_blank" rel="noopener">Emplifi on UGC conversion rates</a></p>
+    </div>
+
+    <p class="tiny" style="margin-top:var(--s4)"><b>The uncomfortable part.</b> These are reach and engagement
+      numbers from content, not leads or revenue from a paid campaign. I have not claimed that Cindrebay or
+      anybody else made a specific number of enquiries or a specific amount of money from this work, because
+      I do not have their books and neither does anyone else selling you a case study with those figures in it.
+      <b>What I have shown you is real, public and checkable in about two minutes</b> &mdash; and I would rather
+      hand you that than a screenshot you have no way to verify. The first paid case study on this page will be
+      a client&rsquo;s own account, published with their permission, or it will not be here at all.</p>
   </div>
 </section>
 
@@ -2206,6 +2318,19 @@
     if (v >= 100000)  return c.sym + Math.round(v/1000) + 'K';
     return c.sym + Math.round(v).toLocaleString(c.loc);
   }
+  /* The case-study band is quoted from published INR benchmarks, so it needs
+     a rupee-to-display conversion rather than the market-base one. */
+  function fromINR(n){
+    var c = C(), v = n / c.inrPer;
+    if (state.disp === 'INR') return c.sym + Math.round(v).toLocaleString(c.loc);
+    var dec = v < 100 ? 1 : 0;
+    return c.sym + v.toLocaleString(c.loc, {minimumFractionDigits:dec, maximumFractionDigits:dec});
+  }
+  function caseBand(){
+    var el = $('cs1');
+    if (el) el.innerHTML = fromINR(212898/1000*60) + '&ndash;' + fromINR(212898/1000*120);
+  }
+
   /* Dual display retired — one currency, the reader's own. */
   function alt(){ return ''; }
 
@@ -2498,6 +2623,7 @@
     lastR = r;
     renderScreens(r);
     composePlan();
+    caseBand();
     $('kCpqA').textContent  = r.tot.qual>0  ? alt(r.cpq) : '';
     $('kCpdA').textContent  = r.tot.deals>0 ? alt(r.cpd) : '';
     $('kRevA').textContent  = alt(r.tot.rev);
