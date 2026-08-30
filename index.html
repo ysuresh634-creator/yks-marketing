@@ -210,13 +210,13 @@
   .kpi.hero-kpi .v,.kpi.hero-kpi .d{color:var(--teal)}
 
   .tblwrap{margin-top:18px;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
-  table{border-collapse:collapse;width:100%;min-width:700px;font-variant-numeric:tabular-nums}
-  th,td{text-align:right;padding:12px 14px;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:12.5px;white-space:nowrap}
-  th{color:var(--muted);font-weight:500;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--line)}
-  td:first-child,th:first-child{text-align:left;position:sticky;left:0;background:var(--surface)}
-  tbody tr:last-child td{border-bottom:0}
-  tfoot td{border-top:1px solid var(--line);color:var(--ink);font-weight:500;background:var(--surface2)}
-  tfoot td:first-child{background:var(--surface2)}
+  .tblwrap table{border-collapse:collapse;width:100%;min-width:700px;font-variant-numeric:tabular-nums}
+  .tblwrap th,.tblwrap td{text-align:right;padding:12px 14px;border-bottom:1px solid var(--line2);font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+  .tblwrap th{color:var(--muted);font-weight:500;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+  .tblwrap td:first-child,.tblwrap th:first-child{text-align:left;position:sticky;left:0;background:var(--surface)}
+  .tblwrap tbody tr:last-child td{border-bottom:0}
+  .tblwrap tfoot td{border-top:1px solid var(--line);color:var(--ink);font-weight:500;background:var(--surface2)}
+  .tblwrap tfoot td:first-child{background:var(--surface2)}
   .pdot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:9px;vertical-align:middle}
   tr.dim{opacity:.4}
   .cpl-ok{color:var(--good)} .cpl-hi{color:var(--warn)}
@@ -231,20 +231,6 @@
   .disclaim b{color:var(--muted)}
 
   /* portal vs owned */
-  .vs{display:grid;grid-template-columns:1fr 40px 1fr;margin-top:28px;align-items:stretch}
-  @media(max-width:800px){.vs{grid-template-columns:1fr;gap:12px}}
-  .vsCol{border:1px solid var(--line);border-radius:14px;padding:22px 20px;background:var(--bg)}
-  .vsCol.own{border-color:var(--teal)}
-  .vsMid{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--faint);text-transform:uppercase}
-  .vsTag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-  .vsCol.own .vsTag{color:var(--teal)}
-  .vsBig{font-family:var(--disp);font-weight:700;font-size:clamp(32px,5vw,48px);letter-spacing:-.03em;line-height:1;margin-top:12px;font-variant-numeric:tabular-nums}
-  .vsCol.own .vsBig{color:var(--teal)}
-  .vsLbl{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:8px}
-  .vsRow{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:11px 0;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted)}
-  .vsRow:first-of-type{margin-top:16px}
-  .vsRow b{font-family:var(--mono);font-size:12.5px;color:var(--ink);text-align:right;font-weight:500}
-  .vsRow b.good{color:var(--good)} .vsRow b.bad{color:var(--bad)} .vsRow b.warn{color:var(--warn)}
 
   /* ownership */
   .hnum{font-size:14.5px;color:var(--faint);margin:18px 0 0;letter-spacing:0;max-width:44ch;line-height:1.5}
@@ -472,6 +458,35 @@
          repeating watermark are baked INSIDE the frame on purpose: if anyone
          screenshots this, the label travels with the screenshot. Do not remove
          them — that is the line between a teaching tool and a fake record. ---- */
+  /* Portal-vs-owned comparison, drawn as two dashboards. The portal side is
+     deliberately generic chrome — mocking up a named portal's back-office to
+     argue against that portal would be fabricating their records, not teaching. */
+  .vsshots{display:grid;grid-template-columns:1fr;gap:16px;margin-top:30px;align-items:start}
+  @media(min-width:940px){.vsshots{grid-template-columns:1fr 1fr;gap:18px}}
+  .vsshots .shotframe{box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .dtop{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #dadde1;background:#fff;flex-wrap:wrap}
+  .dtop b{font-size:14px;font-weight:700;color:#1c1e21;letter-spacing:-.01em}
+  .dtop .plan{font-size:11.5px;color:#65676b}
+  .dtop .when{margin-left:auto;font-size:11.5px;color:#1c1e21;border:1px solid #ccd0d5;border-radius:5px;padding:4px 9px;white-space:nowrap}
+  .dtabs{display:flex;gap:16px;padding:0 14px;border-bottom:1px solid #dadde1;background:#fff}
+  .dtabs span{font-size:12.5px;color:#65676b;padding:10px 0;border-bottom:2px solid transparent;white-space:nowrap}
+  .dtabs span.on{font-weight:600}
+  .dtiles{display:grid;grid-template-columns:repeat(3,1fr);background:#dadde1;gap:1px;border-bottom:1px solid #dadde1}
+  .dtiles div{background:#f7f8fa;padding:13px 14px}
+  .dtiles b{display:block;font-size:20px;font-weight:700;color:#1c1e21;letter-spacing:-.02em;line-height:1.1}
+  .dtiles span{display:block;font-size:11px;color:#65676b;margin-top:4px}
+  .dtable{width:100%;min-width:0;border-collapse:collapse;font-size:12px;background:#fff;table-layout:fixed}
+  .dtable th{text-align:left;padding:9px 12px;background:#f7f8fa;border-bottom:1px solid #dadde1;color:#65676b;font-weight:600;font-size:10.5px;white-space:nowrap;position:static}
+  .dtable td{padding:10px 12px;border-bottom:1px solid #ebedf0;color:#1c1e21;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;position:static;font-family:inherit;text-align:left}
+  .dtable th:nth-child(2),.dtable td:nth-child(2){width:31%}
+  .dtable th:nth-child(3),.dtable td:nth-child(3){width:34%}
+  .dtable td.nm{color:#1c1e21;font-weight:500}
+  .dtable .shared{color:#d0483c;font-weight:600}
+  .dtable .sole{color:#31a24c;font-weight:600}
+  .dfoot{padding:11px 14px;background:#f7f8fa;border-top:1px solid #dadde1;font-size:11.5px;color:#65676b;line-height:1.45}
+  .dfoot b{color:#1c1e21}
+  .vsverdict{margin-top:18px}
+
   .shotframe{position:relative;border-radius:10px;overflow:hidden;background:#fff;color:#1c1e21;
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     box-shadow:0 20px 55px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.25)}
@@ -891,31 +906,55 @@
           <div class="hint"><b style="color:var(--ink)">Argue with me here.</b> Published benchmarks say four to eight. Call back inside five minutes and you beat the average &mdash; so pull it down.</div>
         </div>
 
-        <div class="vs">
-          <div class="vsCol">
-            <div class="vsTag">Portal</div>
-            <div class="vsBig" id="pLeads">&mdash;</div>
-            <div class="vsLbl">enquiries a month</div>
-            <div class="vsRow"><span>Each one costs</span><b id="pCpl">&mdash;</b></div>
-            <div class="vsRow"><span>Already on a property page</span><b class="good">Yes &mdash; warmer</b></div>
-            <div class="vsRow"><span>Also calling</span><b class="bad" id="pShare">6 other agents</b></div>
-            <div class="vsRow"><span>Realistically yours</span><b class="bad" id="pMine">&mdash;</b></div>
-            <div class="vsRow"><span>You stop paying</span><b class="bad">It all stops</b></div>
+        <div class="vsshots">
+
+          <div class="shotframe">
+            <div class="brchrome">
+              <div class="brdots"><i></i><i></i><i></i></div>
+              <div class="brtab"><i style="background:#c0392b"></i>Advertiser dashboard</div>
+            </div>
+            <div class="braddr">
+              <span class="brurl">propertyportal.in/advertiser/responses</span>
+              <span class="simstamp">Simulated</span>
+            </div>
+            <div class="dtop"><b>Property portal</b><span class="plan">Premium listing plan</span><span class="when">Last 30 days</span></div>
+            <div class="dtabs"><span class="on">Responses</span><span>Listings</span><span>Invoices</span></div>
+            <div class="dtiles">
+              <div><b id="pdSpend">&mdash;</b><span>Paid to the portal</span></div>
+              <div><b id="pdLeads">&mdash;</b><span>Responses</span></div>
+              <div><b id="pdCpl">&mdash;</b><span>Cost per response</span></div>
+            </div>
+            <table class="dtable"><thead><tr><th>Enquiry</th><th>Received</th><th>Also sent to</th></tr></thead>
+              <tbody id="pdRows"></tbody></table>
+            <div class="dfoot" id="pdFoot">&mdash;</div>
+            <div class="wmark"></div>
           </div>
-          <div class="vsMid">vs</div>
-          <div class="vsCol own">
-            <div class="vsTag">Your own ads</div>
-            <div class="vsBig" id="oLeads">&mdash;</div>
-            <div class="vsLbl">enquiries a month</div>
-            <div class="vsRow"><span>Each one costs</span><b id="oCpl">&mdash;</b></div>
-            <div class="vsRow"><span>Already on a property page</span><b class="warn">No &mdash; we create the demand</b></div>
-            <div class="vsRow"><span>Also calling</span><b class="good">Nobody</b></div>
-            <div class="vsRow"><span>Realistically yours</span><b class="good" id="oMine">&mdash;</b></div>
-            <div class="vsRow"><span>You stop paying</span><b class="good">You keep the audience and content</b></div>
+
+          <div class="shotframe">
+            <div class="brchrome">
+              <div class="brdots"><i></i><i></i><i></i></div>
+              <div class="brtab"><i style="background:#0064e0"></i>Ads Manager &mdash; Results</div>
+            </div>
+            <div class="braddr">
+              <span class="brurl">adsmanager.facebook.com/adsmanager/manage</span>
+              <span class="simstamp">Simulated</span>
+            </div>
+            <div class="dtop"><b>Your own ad account</b><span class="plan">In your company&rsquo;s name</span><span class="when">Last 30 days</span></div>
+            <div class="dtabs"><span class="on">Results</span><span>Audiences</span><span>Billing</span></div>
+            <div class="dtiles">
+              <div><b id="odSpend">&mdash;</b><span>Paid to Meta &amp; Google</span></div>
+              <div><b id="odLeads">&mdash;</b><span>Enquiries</span></div>
+              <div><b id="odCpl">&mdash;</b><span>Cost per enquiry</span></div>
+            </div>
+            <table class="dtable"><thead><tr><th>Enquiry</th><th>Received</th><th>Also sent to</th></tr></thead>
+              <tbody id="odRows"></tbody></table>
+            <div class="dfoot" id="odFoot">&mdash;</div>
+            <div class="wmark"></div>
           </div>
+
         </div>
 
-        <div class="flag ok" style="margin-top:20px"><span class="ic">In short</span><div id="portalVerdict">&mdash;</div></div>
+        <div class="flag ok vsverdict"><span class="ic">In short</span><div id="portalVerdict">&mdash;</div></div>
       </div>
     </div>
 
@@ -1771,7 +1810,6 @@
     $('pcplV').textContent = money(pcpl);
     $('pcplA').textContent = alt(pcpl);
     $('agentsV').textContent = agents === 1 ? 'Nobody else' : agents;
-    $('pShare').textContent = agents === 1 ? 'Nobody' : agents + ' of them';
 
     var pLeads = pcpl > 0 ? spend/pcpl : 0;
     var pQual  = pLeads * PORTAL_QUAL;
@@ -1783,12 +1821,36 @@
     var oLeads = oCplV > 0 ? spend/oCplV : 0;
     var oQual  = oLeads * oQualR;
 
-    $('pLeads').textContent = num(Math.round(pLeads));
-    $('pCpl').textContent   = money(pcpl);
-    $('pMine').textContent  = num(Math.round(pMine)) + ' of them';
-    $('oLeads').textContent = num(Math.round(oLeads));
-    $('oCpl').textContent   = oCplV>0 ? money(oCplV) : '—';
-    $('oMine').textContent  = num(Math.round(oQual)) + ' — all of them';
+    /* Both sides drawn as dashboards. The "Also sent to" column is the whole
+       argument: on the portal every row is shared, on your own account none is. */
+    var PNAMES = ['R. Nair','S. Iyer','A. Kulkarni','M. Fernandes'];
+    var ONAMES = ['D. Bhatia','K. Menon','P. Reddy','T. Varghese'];
+    var WHEN   = ['2 min ago','19 min ago','1 hr ago','3 hr ago'];
+
+    $('pdSpend').textContent = compact(spend);
+    $('pdLeads').textContent = num(Math.round(pLeads));
+    $('pdCpl').textContent   = money(pcpl);
+    $('odSpend').textContent = compact(spend);
+    $('odLeads').textContent = num(Math.round(oLeads));
+    $('odCpl').textContent   = oCplV>0 ? money(oCplV) : '—';
+
+    var shared = agents === 1 ? '<span class="sole">You only</span>'
+                              : '<span class="shared">' + agents + ' more agents</span>';
+    var prows = '', orows = '';
+    for (var i = 0; i < 4; i++){
+      prows += '<tr><td class="nm">' + PNAMES[i] + '</td><td>' + WHEN[i] + '</td><td>' + shared + '</td></tr>';
+      orows += '<tr><td class="nm">' + ONAMES[i] + '</td><td>' + WHEN[i] + '</td><td><span class="sole">You only</span></td></tr>';
+    }
+    $('pdRows').innerHTML = prows;
+    $('odRows').innerHTML = orows;
+
+    $('pdFoot').innerHTML = agents === 1
+      ? 'Every response here is yours alone.'
+      : 'Each response is delivered to you and <b>' + agents + ' other agents</b> at the same time. Of ' +
+        num(Math.round(pLeads)) + ' responses, about <b>' + num(Math.round(pMine)) +
+        '</b> are realistically yours to win. <b>Stop paying and the whole feed stops.</b>';
+    $('odFoot').innerHTML = 'Nobody else receives these. About <b>' + num(Math.round(oQual)) +
+      '</b> are worth calling, and all of them are yours. <b>Stop paying and you keep the audience, the content and the data.</b>';
 
     var costGap = (oCplV > 0 && pcpl > 0) ? pcpl/oCplV : 0;
     var mult    = pMine > 0 ? oQual/pMine : 0;
