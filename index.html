@@ -95,6 +95,16 @@
   .topline{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:58px;font-size:14px;color:var(--faint);flex-wrap:wrap}
   @media(min-width:900px){.topline{margin-bottom:82px}}
   .topline a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .curpick{display:flex;align-items:center;gap:9px}
+  .curpick label{color:var(--faint);font-size:13.5px}
+  .curpick select{background:var(--surface);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+    font-family:var(--body);font-size:14px;padding:7px 10px;cursor:pointer}
+  .curpick select:focus{outline:0;border-color:var(--amber)}
+  .ratebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--faint);margin-top:14px}
+  .ratebar input{width:88px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+    font-family:var(--mono);font-size:13px;padding:5px 8px}
+  .ratebar input:focus{outline:0;border-color:var(--amber)}
+  .ratebar b{color:var(--muted);font-weight:400}
   .topline a:hover{border-color:var(--amber);color:var(--amber)}
   .herogrid{position:relative;display:grid;grid-template-columns:1fr;gap:30px;align-items:end}
   @media(min-width:900px){.herogrid{grid-template-columns:1fr 268px;gap:60px}}
@@ -168,6 +178,7 @@
   .ctrlgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,34px)}
   @media(max-width:820px){.ctrlgrid{grid-template-columns:1fr}}
 
+  .seglbl{font-size:13px;color:var(--faint);margin-bottom:8px}
   .seg{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px}
   .seg button{flex:1;background:transparent;border:0;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;padding:10px 8px;border-radius:9px;cursor:pointer;transition:.18s}
   .seg button[aria-pressed="true"]{background:var(--amber);color:#07060A;font-weight:600}
@@ -461,6 +472,38 @@
   /* Portal-vs-owned comparison, drawn as two dashboards. The portal side is
      deliberately generic chrome — mocking up a named portal's back-office to
      argue against that portal would be fabricating their records, not teaching. */
+  /* ---- NRI audience builder ---- */
+  .aud{background:#fff;display:grid;grid-template-columns:1fr}
+  @media(min-width:820px){.aud{grid-template-columns:1fr 250px}}
+  .audmain{padding:4px 0}
+  .audrow{padding:13px 16px;border-bottom:1px solid #ebedf0}
+  .audrow .k{font-size:12px;font-weight:700;color:#1c1e21;margin-bottom:7px}
+  .audsel{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #ccd0d5;border-radius:6px;padding:8px 11px;font-size:12.5px;color:#1c1e21;background:#fff}
+  .audsel::after{content:'▾';color:#65676b;font-size:11px}
+  .audchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#e7f3ff;color:#0064e0;border-radius:5px;padding:5px 9px;font-size:12px;font-weight:600}
+  .chip::after{content:'×';opacity:.55;font-weight:400}
+  .chip.ex{background:#ffebe9;color:#c5221f}
+  .chip.pl{background:#f0f2f5;color:#1c1e21}
+  .audnote{font-size:11.5px;color:#65676b;margin-top:7px;line-height:1.45}
+  .audnote b{color:#1c1e21}
+  .audside{background:#f7f8fa;border-left:1px solid #dadde1;padding:16px}
+  @media(max-width:819px){.audside{border-left:0;border-top:1px solid #dadde1}}
+  .audside .t{font-size:12px;font-weight:700;color:#1c1e21}
+  .gauge{height:6px;border-radius:99px;background:linear-gradient(90deg,#f0483e,#f7b928,#31a24c);margin:12px 0 6px;position:relative}
+  .gauge i{position:absolute;top:-4px;width:3px;height:14px;background:#1c1e21;border-radius:2px}
+  .audside .sc{font-size:11px;color:#65676b;display:flex;justify-content:space-between}
+  .audside .est{margin-top:15px;padding-top:13px;border-top:1px solid #dadde1}
+  .audside .est b{display:block;font-size:13px;color:#1c1e21;line-height:1.35}
+  .audside .est span{display:block;font-size:11.5px;color:#65676b;margin-top:6px;line-height:1.45}
+
+  .clockbox{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:34px}
+  @media(min-width:720px){.clockbox{grid-template-columns:repeat(3,1fr)}}
+  .clockbox div{background:var(--bg);padding:20px 0}
+  @media(min-width:720px){.clockbox div{padding:22px 22px 22px 0}}
+  .clockbox b{display:block;font-family:var(--disp);font-size:27px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+  .clockbox span{display:block;font-size:14px;color:var(--muted);margin-top:7px;line-height:1.5}
+
   /* ---- Ad Library mock + the read that comes off it ---- */
   .allib{background:#fff;padding:14px}
   .alsearch{display:flex;align-items:center;gap:9px;border:1px solid #dfe1e5;border-radius:999px;padding:9px 14px;background:#f7f8fa;margin-bottom:12px}
@@ -622,7 +665,19 @@
   <div class="wrap">
     <div class="topline">
       <a href="https://yksproductions.com/">YKS Productions</a>
-      <span>Bengaluru &middot; Kochi &middot; Dubai</span>
+      <span class="curpick">
+        <label for="curSel">Show money in</label>
+        <select id="curSel" aria-label="Display currency">
+          <option value="INR" selected>&#8377; Indian rupees</option>
+          <option value="AED">AED UAE dirhams</option>
+          <option value="USD">$ US dollars</option>
+          <option value="GBP">&pound; Pounds sterling</option>
+          <option value="EUR">&euro; Euros</option>
+          <option value="AUD">A$ Australian dollars</option>
+          <option value="CAD">C$ Canadian dollars</option>
+          <option value="SGD">S$ Singapore dollars</option>
+        </select>
+      </span>
     </div>
 
     <div class="herogrid">
@@ -1019,16 +1074,21 @@
         <span class="dots"><i></i><i></i><i></i></span>
         <span>Plan for</span>
         <input class="clientname mono" id="clientName" value="Your brokerage" aria-label="Brokerage name" spellcheck="false" />
-        <span class="rate">AED 1 = &#8377;<input id="rate" type="number" step="0.01" min="1" value="25.98" aria-label="AED to INR rate" /></span>
         <span class="tag" id="marketTag">India &middot; &#8377;</span>
       </div>
 
       <div class="cbody">
         <div class="ctrlgrid">
           <div>
-            <div class="seg" role="group" aria-label="Market">
+            <div class="seglbl">Ad costs benchmarked for</div>
+            <div class="seg" role="group" aria-label="Benchmark market">
               <button id="mkIN" aria-pressed="true">India</button>
               <button id="mkAE" aria-pressed="false">Dubai</button>
+            </div>
+            <div class="ratebar" id="rateBar">
+              <b>1 <span id="rateCur">INR</span> =</b>
+              <input id="rate" type="number" step="0.01" min="0.01" value="1" aria-label="Rupees per unit of the display currency" />
+              <b>&#8377; &mdash; <span id="rateNote">edit it if you disagree</span></b>
             </div>
 
             <div class="fld">
@@ -1260,6 +1320,121 @@
     <p class="say w" style="margin-top:30px">That is one afternoon of work and it decides what we shoot on day
       one. <b>It is also the cheapest research you will ever buy</b>, because your competitors have already paid
       for it.</p>
+  </div>
+</section>
+
+<!-- ============ NRI ============ -->
+<section id="nri">
+  <div class="wrap">
+    <h2>Half your buyers are<br>not <em>in</em> the country.</h2>
+    <p class="say">An NRI in Sharjah is not reachable by a hoarding on the bypass, a newspaper insert, or a
+      listing on an Indian portal. They are reachable, though. Very precisely.</p>
+
+    <div class="simwrap">
+      <div class="simbar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span>Audience builder</span>
+        <span class="simbadge">Simulated</span>
+      </div>
+
+      <div class="simbody" style="padding:20px 16px 6px;background:var(--bg)">
+        <div class="adgrid" style="grid-template-columns:1fr">
+          <div class="adfields" style="display:grid;grid-template-columns:1fr;gap:0 22px">
+            <div class="fld"><label for="nriWhere">Where they live now</label>
+              <select id="nriWhere">
+                <option value="ae" selected>United Arab Emirates</option>
+                <option value="sa">Saudi Arabia</option>
+                <option value="qa">Qatar</option>
+                <option value="kw">Kuwait</option>
+                <option value="om">Oman</option>
+                <option value="us">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="ca">Canada</option>
+                <option value="au">Australia</option>
+                <option value="sg">Singapore</option>
+              </select></div>
+            <div class="fld"><label for="nriFrom">Where they are from</label>
+              <select id="nriFrom">
+                <option value="kl" selected>Kerala &mdash; Malayalam</option>
+                <option value="ka">Karnataka &mdash; Kannada</option>
+                <option value="tg">Telangana &amp; Andhra &mdash; Telugu</option>
+                <option value="tn">Tamil Nadu &mdash; Tamil</option>
+                <option value="pb">Punjab &mdash; Punjabi</option>
+                <option value="gj">Gujarat &mdash; Gujarati</option>
+                <option value="mh">Maharashtra &mdash; Marathi</option>
+                <option value="hi">Hindi-speaking states</option>
+              </select></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="simbody" style="padding:6px 16px 20px;background:var(--bg)">
+        <div class="shotframe">
+          <div class="brchrome">
+            <div class="brdots"><i></i><i></i><i></i></div>
+            <div class="brtab"><i style="background:#0064e0"></i>Ad set &mdash; Audience</div>
+          </div>
+          <div class="braddr">
+            <span class="brurl">adsmanager.facebook.com/adsmanager/manage/adsets/edit</span>
+            <span class="simstamp">Simulated</span>
+          </div>
+          <div class="aud">
+            <div class="audmain">
+              <div class="audrow">
+                <div class="k">Locations</div>
+                <div class="audsel" id="nriLivingIn">People living in this location</div>
+                <div class="audchips" id="nriLoc"></div>
+                <div class="audnote" id="nriLocNote"></div>
+              </div>
+              <div class="audrow">
+                <div class="k">Age &amp; language</div>
+                <div class="audchips">
+                  <span class="chip pl">32 &ndash; 58</span>
+                  <span class="chip" id="nriLang">Malayalam</span>
+                </div>
+                <div class="audnote" id="nriLangNote">&mdash;</div>
+              </div>
+              <div class="audrow">
+                <div class="k">Detailed targeting &mdash; include</div>
+                <div class="audchips" id="nriInc"></div>
+              </div>
+              <div class="audrow" style="border-bottom:0">
+                <div class="k">Exclude</div>
+                <div class="audchips"><span class="chip ex">India</span><span class="chip ex">Recently travelled</span></div>
+                <div class="audnote"><b>Excluding India matters.</b> Without it you spend a large part of the
+                  budget on people already living down the road, who you could have reached far cheaper.</div>
+              </div>
+            </div>
+            <div class="audside">
+              <div class="t">Audience definition</div>
+              <div class="gauge"><i style="left:64%"></i></div>
+              <div class="sc"><span>Specific</span><span>Broad</span></div>
+              <div class="est">
+                <b>Estimated audience size</b>
+                <span>Meta calculates this live the moment the audience is built, and it moves week to week.
+                  <b>Anyone quoting you a fixed audience size is reading it off a slide.</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="wmark"></div>
+        </div>
+      </div>
+
+      <div class="simfoot" id="nriFoot">&mdash;</div>
+    </div>
+
+    <div class="clockbox">
+      <div><b id="nriPop">&mdash;</b><span id="nriPopL">&mdash;</span></div>
+      <div><b id="nriClock">&mdash;</b><span>is what their 8pm is on your clock. Schedule the ads to
+        <b style="color:var(--ink)">their</b> evening, not yours.</span></div>
+      <div><b id="nriCur">&mdash;</b><span id="nriCurL">&mdash;</span></div>
+    </div>
+
+    <h3 style="margin-top:52px;font-size:23px">And the ad itself has to change.</h3>
+    <p class="say w" style="margin-top:12px" id="nriPitch">&mdash;</p>
+
+    <p class="say w" style="margin-top:26px;color:var(--faint)">Population figures are round public estimates,
+      for scale only. <b>The addressable audience is smaller</b>, and the account shows the real number.</p>
   </div>
 </section>
 
@@ -1523,48 +1698,70 @@
 
   var WEEKS_PER_MONTH = 52/12;
 
-  var state = { market:'in', alloc:{}, budget:0, price:0, comm:2, close:5, fee:0, rate:25.98 };
+  var state = { market:'in', disp:'INR', alloc:{}, budget:0, price:0, comm:2, close:5, fee:0, rate:25.98 };
 
   var $ = function(id){ return document.getElementById(id); };
   var M  = function(){ return MARKETS[state.market]; };
 
-  /* Indian numbering (lakh/crore) for ₹, western thousands for AED —
-     a broker in either market should read their own convention. */
+  /* ---- currency ------------------------------------------------------
+     Two separate ideas that used to be tangled together:
+
+       market   — WHICH benchmark costs the model runs on. India and Dubai
+                  are genuinely different ad markets with different published
+                  CPCs, so this changes the arithmetic.
+       display  — what units the reader wants to read. Changes nothing but
+                  the labels.
+
+     The page used to print every figure twice, rupees with a dirham
+     conversion underneath, which made an India plan look like a UAE
+     document. One currency now, whichever the reader picks.
+
+     `inrPer` is how many rupees one unit is worth. AED is the sourced,
+     dated rate; the rest are indicative starting points and the reader
+     can overwrite whichever one they have selected. -------------------*/
+  var CUR = {
+    INR:{sym:'₹',   loc:'en-IN', inrPer:1,     ind:true},
+    AED:{sym:'AED ',loc:'en-AE', inrPer:25.98, sourced:true},
+    USD:{sym:'$',   loc:'en-US', inrPer:88},
+    GBP:{sym:'£',   loc:'en-GB', inrPer:112},
+    EUR:{sym:'€',   loc:'en-IE', inrPer:96},
+    AUD:{sym:'A$',  loc:'en-AU', inrPer:58},
+    CAD:{sym:'C$',  loc:'en-CA', inrPer:64},
+    SGD:{sym:'S$',  loc:'en-SG', inrPer:66}
+  };
+
+  function C(){ return CUR[state.disp] || CUR.INR; }
+
+  /* Model amounts are in the market's own currency. Take them to rupees
+     first, then out into whatever the reader asked for. */
+  function toDisp(n){
+    var inr = state.market === 'ae' ? n * CUR.AED.inrPer : n;
+    return inr / C().inrPer;
+  }
+
   function money(n){
-    var v = Math.round(n);
-    return state.market === 'in'
-      ? '₹' + v.toLocaleString('en-IN')
-      : 'AED ' + v.toLocaleString('en-AE');
+    var c = C(), v = toDisp(n);
+    var dec = (Math.abs(v) > 0 && Math.abs(v) < 10) ? 2 : 0;
+    return c.sym + v.toLocaleString(c.loc, {minimumFractionDigits:dec, maximumFractionDigits:dec});
   }
   function num(n, d){
     d = d || 0;
     return Number(n).toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
   }
+  /* Indian readers count in lakh and crore; everyone else in K and M. */
   function compact(n){
-    return state.market === 'in' ? inrFmt(n) : aedFmt(n);
+    var c = C(), v = toDisp(n);
+    if (state.disp === 'INR'){
+      if (v >= 10000000) return c.sym + (v/10000000).toFixed(2) + ' Cr';
+      if (v >= 100000)   return c.sym + (v/100000).toFixed(2) + ' L';
+      return c.sym + Math.round(v).toLocaleString(c.loc);
+    }
+    if (v >= 1000000) return c.sym + (v/1000000).toFixed(2) + 'M';
+    if (v >= 100000)  return c.sym + Math.round(v/1000) + 'K';
+    return c.sym + Math.round(v).toLocaleString(c.loc);
   }
-
-  /* ---- dual currency -------------------------------------------------
-     The simulator always shows the plan in both AED and INR. The market
-     toggle changes the *cost benchmarks* (Dubai and India are genuinely
-     different ad markets); the rate below only converts the display. ---*/
-  function inrFmt(v){
-    if (v >= 10000000) return '₹' + (v/10000000).toFixed(2) + ' Cr';
-    if (v >= 100000)   return '₹' + (v/100000).toFixed(2) + ' L';
-    return '₹' + Math.round(v).toLocaleString('en-IN');
-  }
-  function aedFmt(v){
-    if (v >= 1000000) return 'AED ' + (v/1000000).toFixed(2) + 'M';
-    if (v >= 100000)  return 'AED ' + Math.round(v/1000) + 'K';
-    return 'AED ' + Math.round(v).toLocaleString('en-AE');
-  }
-  /* Same amount of money, expressed in the other currency. */
-  function alt(n){
-    if (!isFinite(n) || n <= 0) return '';
-    return state.market === 'ae'
-      ? '≈ ' + inrFmt(n * state.rate)
-      : '≈ ' + aedFmt(n / state.rate);
-  }
+  /* Dual display retired — one currency, the reader's own. */
+  function alt(){ return ''; }
 
   /* CPL derives from CPC and form conversion rate. */
   function cpl(p){ return p.cpc / p.cvr; }
@@ -1765,7 +1962,8 @@
     state.comm   = Number($('comm').value);
     state.close  = Number($('close').value);
     state.fee    = Number($('fee').value);
-    state.rate   = Math.max(1, Number($('rate').value) || 25.98);
+    CUR[state.disp].inrPer = Math.max(0.0001, Number($('rate').value) || CUR[state.disp].inrPer);
+    state.rate = CUR.AED.inrPer;
 
     $('budgetV').textContent = money(state.budget);
     $('priceV').textContent  = money(state.price);
@@ -2148,6 +2346,21 @@
   ['budget','price','comm','close','fee','rate','portal','portalCpl','agents'].forEach(function(id){
     $(id).addEventListener('input', render);
   });
+  function syncRateBar(){
+    var c = C();
+    $('rateCur').textContent = state.disp;
+    $('rate').value = c.inrPer;
+    $('rateBar').style.display = (state.disp === 'INR') ? 'none' : '';
+    $('rateNote').textContent = c.sourced
+      ? 'published rate, 12 Aug 2026 — edit it if you disagree'
+      : 'indicative only — put your own rate in';
+  }
+  $('curSel').addEventListener('change', function(){
+    state.disp = this.value;
+    syncRateBar();
+    render();
+  });
+
   $('mkAE').addEventListener('click', function(){ setMarket('ae'); });
   $('mkIN').addEventListener('click', function(){ setMarket('in'); });
   $('btnRec').addEventListener('click', function(){ typicalSplit(); syncSliders(); render(); });
@@ -2158,6 +2371,7 @@
     document.title = (v ? v + ' — ' : '') + 'Ad Budget Simulator | YKS Productions';
   });
 
+  syncRateBar();
   setMarket('in');
 })();
 </script>
@@ -2383,6 +2597,109 @@
   });
 
   draw('property');
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------
+   NRI audience builder. The targeting spec is the valuable, checkable
+   part and it is exact. The audience SIZE is deliberately not invented
+   — Meta computes it live, and saying so is more credible than a
+   number nobody can verify. Population figures are round public
+   estimates, labelled as such on the page.
+----------------------------------------------------------------*/
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* offset = hours to ADD to their local time to get IST */
+  var WHERE = {
+    ae:{name:'United Arab Emirates', the:'the ', cities:['Dubai','Abu Dhabi','Sharjah'], pop:'3.5 million', popL:'Indian nationals live in the UAE — the largest expatriate group there.', off:1.5,  cur:'AED', gulf:true},
+    sa:{name:'Saudi Arabia',         cities:['Riyadh','Jeddah','Dammam'],    pop:'2.4 million', popL:'Indian nationals live in Saudi Arabia.', off:2.5,  cur:'SAR', gulf:true},
+    qa:{name:'Qatar',                cities:['Doha'],                        pop:'700,000',     popL:'Indian nationals live in Qatar — around a quarter of the population.', off:2.5, cur:'QAR', gulf:true},
+    kw:{name:'Kuwait',               cities:['Kuwait City'],                 pop:'1 million',   popL:'Indian nationals live in Kuwait.', off:2.5, cur:'KWD', gulf:true},
+    om:{name:'Oman',                 cities:['Muscat','Salalah'],            pop:'600,000',     popL:'Indian nationals live in Oman.', off:1.5, cur:'OMR', gulf:true},
+    us:{name:'United States', the:'the ',        cities:['New Jersey','Texas','California'], pop:'4.8 million', popL:'people of Indian origin live in the United States.', off:10.5, cur:'USD'},
+    uk:{name:'United Kingdom', the:'the ',       cities:['London','Birmingham','Leicester'], pop:'1.9 million', popL:'people of Indian origin live in the United Kingdom.', off:5.5, cur:'GBP'},
+    ca:{name:'Canada',               cities:['Toronto','Vancouver','Calgary'],   pop:'1.8 million', popL:'people of Indian origin live in Canada.', off:10.5, cur:'CAD'},
+    au:{name:'Australia',            cities:['Melbourne','Sydney','Perth'],      pop:'800,000',     popL:'Indian-born residents live in Australia — one of its largest migrant groups.', off:-4.5, cur:'AUD'},
+    sg:{name:'Singapore',            cities:['Singapore'],                       pop:'650,000',     popL:'people of Indian origin live in Singapore.', off:-2.5, cur:'SGD'}
+  };
+
+  var FROM = {
+    kl:{lang:'Malayalam', people:'Keralite',         many:'Keralites',                home:'Kerala'},
+    ka:{lang:'Kannada',   people:'Kannadiga',        many:'Kannadigas',               home:'Karnataka'},
+    tg:{lang:'Telugu',    people:'Telugu-speaking',  many:'Telugu-speaking families', home:'Telangana or Andhra'},
+    tn:{lang:'Tamil',     people:'Tamil',            many:'Tamil families',           home:'Tamil Nadu'},
+    pb:{lang:'Punjabi',   people:'Punjabi',          many:'Punjabis',                 home:'Punjab'},
+    gj:{lang:'Gujarati',  people:'Gujarati',         many:'Gujaratis',                home:'Gujarat'},
+    mh:{lang:'Marathi',   people:'Marathi-speaking', many:'Marathi-speaking families',home:'Maharashtra'},
+    hi:{lang:'Hindi',     people:'Hindi-speaking',   many:'Hindi-speaking families',  home:'north India'}
+  };
+
+  /* "ten and a half hours" reads like a person; "10.5" reads like a spreadsheet */
+  var WORD = {1.5:'an hour and a half',2.5:'two and a half hours',4.5:'four and a half hours',
+              5.5:'five and a half hours',10.5:'ten and a half hours',2:'two hours'};
+  function gapWords(off){ var a = Math.abs(off); return WORD[a] || (a + ' hours'); }
+
+  function clock(off){
+    var mins = 20*60 + Math.round(off*60);           /* their 8pm, in IST */
+    mins = ((mins % 1440) + 1440) % 1440;
+    var hh = Math.floor(mins/60), mm = mins % 60;
+    var ap = hh >= 12 ? 'pm' : 'am';
+    var h12 = hh % 12; if (h12 === 0) h12 = 12;
+    return h12 + (mm ? ':' + (mm < 10 ? '0' : '') + mm : '') + ap;
+  }
+
+  function draw(){
+    var w = WHERE[$('nriWhere').value], f = FROM[$('nriFrom').value];
+    if (!w || !f) return;
+    var inW = (w.the || '') + w.name;   /* "the United Kingdom", but "Canada" */
+
+    $('nriLoc').innerHTML = '<span class="chip">' + w.name + '</span>' +
+      w.cities.map(function(c){ return '<span class="chip">' + c + '</span>'; }).join('');
+    $('nriLocNote').innerHTML = '<b>&ldquo;People living in this location&rdquo;, not &ldquo;people recently in&rdquo;.</b> ' +
+      'The default setting sweeps up tourists and people in transit, and you pay for every one of them.';
+
+    $('nriLang').textContent = f.lang;
+    $('nriLangNote').innerHTML = 'Language is the whole trick. Somebody in ' + inW +
+      ' whose Facebook is set to <b>' + f.lang + '</b> is almost certainly <b>' + f.people +
+      '</b> — no interest list gets you that cleanly, and it costs nothing extra to use.';
+
+    $('nriInc').innerHTML =
+      '<span class="chip">Expats &mdash; lived in India</span>' +
+      '<span class="chip">' + f.home + '</span>' +
+      '<span class="chip">' + f.lang + ' cinema</span>' +
+      '<span class="chip">NRI banking</span>' +
+      '<span class="chip">Property investment</span>';
+
+    $('nriFoot').innerHTML = 'One ad set. <b>' + f.many + ' living in ' + inW +
+      '</b>, aged 32 to 58, reading in ' + f.lang + ', with India excluded so you are not paying twice. ' +
+      'That is a level of aim no hoarding, no newspaper and no portal listing can give you.';
+
+    $('nriPop').textContent  = w.pop;
+    $('nriPopL').textContent = w.popL;
+    $('nriClock').textContent = clock(w.off);
+
+    $('nriCur').textContent  = w.cur + ' → ₹';
+    $('nriCurL').innerHTML   = 'They earn in ' + w.cur + ' and buy in rupees. <b style="color:var(--ink)">Put both numbers in the ad</b> ' +
+      '&mdash; the price in rupees, and what that is in ' + w.cur + ' this week. Every currency on this page switches at the top for the same reason.';
+
+    $('nriPitch').innerHTML = w.gulf
+      ? '<b>Gulf buyers come home once or twice a year</b>, and that visit is when they will actually see the place. ' +
+        'So the ad sells a <b>site visit they can book for their next trip</b>, not a walk-in this weekend. It answers the ' +
+        'question they are really asking on a video call to family back home: is this builder going to hand over on time, ' +
+        'and who checks on it while I am away.'
+      : '<b>They are not moving back next year, so they are buying an asset, not a home.</b> The ad has to answer rental ' +
+        'yield, who manages the property, and whether the title is clean &mdash; and it has to survive ' +
+        gapWords(w.off) + ' of time difference, which means a WhatsApp reply waiting when they wake up rather ' +
+        'than a call at their three in the morning.';
+  }
+
+  ['nriWhere','nriFrom'].forEach(function(id){
+    var el = $(id); if (el) el.addEventListener('change', draw);
+  });
+  draw();
 })();
 </script>
 
