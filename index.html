@@ -338,112 +338,62 @@
   .adnote{font-size:12.5px;color:var(--faint);line-height:1.5;margin-top:16px}
   .adstage{display:flex;justify-content:center}
 
-  /* Device shell shared by all three previews — a broker should see the ad
-     the way a buyer sees it, inside the app, on a phone. */
-  .device{width:298px;max-width:100%;aspect-ratio:9/19.6;background:#0b0b0d;border-radius:42px;padding:9px;
-    box-shadow:0 26px 64px rgba(0,0,0,.62),inset 0 0 0 1px rgba(255,255,255,.07);flex:none}
-  .screen{position:relative;height:100%;border-radius:34px;overflow:hidden;background:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
-  .island{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:78px;height:22px;border-radius:99px;background:#000;z-index:9}
-  .stbar{display:flex;justify-content:space-between;align-items:center;padding:11px 20px 5px;font-size:12px;font-weight:600;color:#111;flex:none;z-index:8}
-  .stbar.dk{color:#fff}
-  .stbar svg{height:11px;margin-left:4px;vertical-align:-1px}
-  .devhome{flex:none;padding:7px 0 8px;display:flex;justify-content:center;background:transparent}
-  .devhome i{width:106px;height:4px;border-radius:99px;background:#111;opacity:.75;display:block}
-  .devhome.dk i{background:#fff;opacity:.85}
-  .fbimg .simchip,.gad .simchip{top:8px;right:8px;bottom:auto;left:auto}
-  .gad{position:relative}
-  .simchip{position:absolute;z-index:9;font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-    color:#fff;background:rgba(178,60,23,.9);border-radius:999px;padding:3px 8px;top:40px;right:9px}
-
-  /* ---- Instagram Reel ---- */
-  .scr-reel{background:#000;color:#fff}
+  .phone{width:290px;max-width:100%;aspect-ratio:9/19.5;border-radius:36px;border:1px solid #2a2730;background:#000;overflow:hidden;position:relative;box-shadow:0 26px 64px rgba(0,0,0,.6)}
+  .reel{position:absolute;inset:0;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
   .reelbg{position:absolute;inset:0;background:linear-gradient(168deg,#3a2f52 0%,#171320 44%,#2b1e28 100%)}
   .reelbg svg{position:absolute;left:0;right:0;bottom:0;width:100%;opacity:.55}
-  .reelscrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 44%,rgba(0,0,0,.84) 100%)}
-  .reelplace{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.26);border:1px dashed rgba(255,255,255,.2);border-radius:6px;padding:6px 11px;white-space:nowrap}
-  .reelbars{position:absolute;top:38px;left:12px;right:12px;height:2px;display:flex;gap:3px;z-index:4}
-  .reelbars i{flex:1;background:rgba(255,255,255,.3);border-radius:2px}
+  .reelscrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 46%,rgba(0,0,0,.82) 100%)}
+  .reelplace{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.26);border:1px dashed rgba(255,255,255,.2);border-radius:6px;padding:6px 11px;white-space:nowrap}
+  .reelstamp{position:absolute;top:44px;right:10px;z-index:6;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ffd9c2;background:rgba(178,60,23,.72);border-radius:999px;padding:3px 8px}
+  .reelstatus{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:11px 18px 0;font-size:11.5px;font-weight:600;letter-spacing:.02em;z-index:4}
+  .reelbars{position:absolute;top:34px;left:12px;right:12px;height:2px;display:flex;gap:3px;z-index:4}
+  .reelbars i{flex:1;background:rgba(255,255,255,.32);border-radius:2px}
   .reelbars i:first-child{background:rgba(255,255,255,.95);flex:.45}
-  .reelui{position:relative;z-index:3;display:flex;flex-direction:column;flex:1;padding:16px 12px 0;min-height:0}
-  .reelhook{margin-top:14px;font-weight:800;font-size:24px;line-height:1.14;letter-spacing:-.02em;text-shadow:0 2px 16px rgba(0,0,0,.8);max-width:14ch}
-  .reelsub{margin-top:9px;display:inline-block;font-size:11.5px;font-weight:700;background:rgba(255,255,255,.94);color:#111;border-radius:5px;padding:4px 8px;align-self:flex-start}
+  .reelui{position:absolute;inset:0;display:flex;flex-direction:column;padding:46px 12px 0}
+  .reelhook{margin-top:26px;font-weight:800;font-size:25px;line-height:1.14;letter-spacing:-.02em;text-shadow:0 2px 16px rgba(0,0,0,.8);max-width:14ch}
+  .reelsub{margin-top:9px;display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.03em;background:rgba(255,255,255,.94);color:#111;border-radius:5px;padding:4px 8px;align-self:flex-start}
   .reelspacer{flex:1}
-  .reelfoot{margin-right:60px;padding-bottom:2px}
+  .reelfoot{padding:0 0 0 2px;margin-right:62px}
   .reeltop{display:flex;align-items:center;gap:8px}
-  .av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-family:var(--mono);font-size:9.5px;font-weight:700;color:#0b0910;flex:none;border:1.5px solid rgba(255,255,255,.9)}
-  .reeltop .nm{font-size:12.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .reelfollow{flex:none;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.85);border-radius:6px;padding:3px 8px}
-  .reelcap{font-size:12px;line-height:1.35;margin-top:8px;max-width:23ch}
+  .av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:700;color:#0b0910;flex:none;border:1.5px solid rgba(255,255,255,.9)}
+  .reeltop .nm{font-size:13px;font-weight:600;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .reelfollow{flex:none;font-size:11.5px;font-weight:600;border:1px solid rgba(255,255,255,.85);border-radius:6px;padding:3px 9px}
+  .reelcap{font-size:12.5px;line-height:1.35;margin-top:9px;max-width:23ch;color:rgba(255,255,255,.96)}
   .reelcap .h{color:rgba(255,255,255,.62)}
-  .reelspon{font-size:10.5px;color:rgba(255,255,255,.74);margin-top:6px;font-weight:500}
-  .reelcta{margin:9px -12px 0;background:rgba(255,255,255,.97);color:#0b0910;padding:12px 14px;display:flex;align-items:center;font-size:13px;font-weight:600}
-  .reelcta::after{content:'›';margin-left:auto;font-size:19px;line-height:1;opacity:.5}
-  .reelrail{position:absolute;right:8px;bottom:104px;display:flex;flex-direction:column;gap:16px;align-items:center;z-index:4}
-  .reelrail figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;text-shadow:0 1px 5px rgba(0,0,0,.6)}
-  .reelrail svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 4px rgba(0,0,0,.55))}
-  .zone{position:absolute;left:0;right:0;border:1px dashed rgba(255,140,59,.85);background:rgba(255,140,59,.13);display:none;z-index:6}
-  .zone span{position:absolute;top:4px;left:7px;font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#ffb27a}
-  .zone.z1{top:0;height:17%} .zone.z2{bottom:0;height:29%;border-color:rgba(255,107,107,.85);background:rgba(255,107,107,.14)}
+  .reelspon{font-size:11px;color:rgba(255,255,255,.72);margin-top:7px;font-weight:500}
+  .reelcta{margin:10px -12px 0;background:rgba(255,255,255,.97);color:#0b0910;padding:13px 14px;display:flex;align-items:center;font-size:13.5px;font-weight:600}
+  .reelcta::after{content:'›';margin-left:auto;font-size:19px;line-height:1;opacity:.55}
+  .reelhome{background:rgba(255,255,255,.97);padding:0 0 9px;display:flex;justify-content:center}
+  .reelhome i{width:104px;height:4px;border-radius:99px;background:#0b0910;opacity:.85;display:block}
+  .reelrail{position:absolute;right:9px;bottom:112px;display:flex;flex-direction:column;gap:17px;align-items:center;z-index:4}
+  .reelrail figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:600;text-shadow:0 1px 5px rgba(0,0,0,.6)}
+  .reelrail svg{width:23px;height:23px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 4px rgba(0,0,0,.55))}
+  .zone{position:absolute;left:0;right:0;border:1px dashed rgba(255,140,59,.85);background:rgba(255,140,59,.13);display:none;z-index:5}
+  .zone span{position:absolute;top:4px;left:7px;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#ffb27a}
+  .zone.z1{top:0;height:17%} .zone.z2{bottom:0;height:28%;border-color:rgba(255,107,107,.85);background:rgba(255,107,107,.14)}
   .zone.z2 span{color:#ff9f9f}
-  .device.annot .zone{display:block}
+  .phone.annot .zone{display:block}
 
-  /* ---- Facebook mobile feed ---- */
-  .fbhead{display:flex;align-items:center;gap:9px;padding:4px 13px 9px;flex:none}
-  .fbwm{font-size:21px;font-weight:800;color:#0866FF;letter-spacing:-.055em}
-  .fbicons{margin-left:auto;display:flex;gap:7px}
-  .fbicons i{width:27px;height:27px;border-radius:50%;background:#EBEDF0;display:grid;place-items:center}
-  .fbicons svg{width:15px;height:15px;fill:none;stroke:#050505;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .fbfeed{flex:1;overflow:hidden;background:#F0F2F5;padding-top:7px}
-  .fbpost{background:#fff}
-  .fbtop{display:flex;align-items:center;gap:9px;padding:11px 13px 8px}
-  .fbtop .nm{font-size:13.5px;font-weight:600;color:#050505;line-height:1.25}
-  .fbtop .sp{font-size:11.5px;color:#65676B;display:flex;align-items:center;gap:4px}
-  .fbtop .dots{margin-left:auto;color:#65676B;font-size:17px;line-height:.6;letter-spacing:1px}
-  .fbcap{padding:0 13px 9px;font-size:13.5px;color:#050505;line-height:1.4}
-  .fbimg{aspect-ratio:1.12/1;position:relative;background:linear-gradient(168deg,#3a2f52,#171320 55%,#2b1e28);display:grid;place-items:center;padding:20px}
-  .fbimg .ov{font-family:var(--disp);font-weight:700;font-size:24px;line-height:1.14;color:#fff;text-align:center;text-shadow:0 2px 14px rgba(0,0,0,.7)}
-  .fbimg .ph{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.32)}
-  .fblink{display:flex;align-items:center;gap:10px;padding:10px 13px;background:#F0F2F5}
-  .fblink .u{font-size:10.5px;color:#65676B;text-transform:uppercase;letter-spacing:.02em}
-  .fblink .t{font-size:13px;font-weight:600;color:#050505;margin-top:1px;line-height:1.28}
-  .fbbtn{margin-left:auto;flex:none;background:#E4E6EB;border-radius:6px;padding:8px 13px;font-size:12.5px;color:#050505;font-weight:600}
-  .fbcounts{display:flex;align-items:center;gap:5px;padding:9px 13px 7px;font-size:12px;color:#65676B;border-bottom:1px solid #E4E6EB}
-  .fbcounts .rx{display:flex}
-  .fbcounts .rx b{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font-size:9px;color:#fff;margin-right:-4px;border:1.5px solid #fff}
-  .fbacts{display:flex;padding:5px 4px}
-  .fbacts span{flex:1;text-align:center;font-size:12.5px;font-weight:600;color:#65676B;padding:8px 0}
-  .fbnavbar{display:flex;justify-content:space-around;padding:9px 6px 2px;border-top:1px solid #E4E6EB;background:#fff;flex:none}
-  .fbnavbar svg{width:19px;height:19px;fill:none;stroke:#65676B;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .fbnavbar svg:first-child{stroke:#0866FF}
+  /* feed + search previews */
+  .fbcard{width:340px;max-width:100%;border:1px solid var(--line);border-radius:14px;background:var(--surface2);overflow:hidden}
+  .fbtop{display:flex;align-items:center;gap:9px;padding:12px 13px}
+  .fbtop .nm{font-size:13.5px;font-weight:600;color:var(--ink)}
+  .fbtop .sp{font-size:10.5px;font-family:var(--mono);color:var(--faint);letter-spacing:.05em}
+  .fbcap{padding:0 13px 12px;font-size:13.5px;color:var(--muted);line-height:1.45}
+  .fbimg{aspect-ratio:1/1;position:relative;background:linear-gradient(168deg,#2b2340,#14111d 55%,#241a26);display:grid;place-items:center;padding:22px}
+  .fbimg .ov{font-family:var(--disp);font-weight:700;font-size:23px;line-height:1.14;color:#fff;text-align:center;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+  .fblink{display:flex;align-items:center;gap:12px;padding:11px 13px;background:var(--bg);border-top:1px solid var(--line)}
+  .fblink .u{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .fblink .t{font-size:13.5px;font-weight:600;color:var(--ink);margin-top:2px;line-height:1.3}
+  .fbbtn{margin-left:auto;flex:none;background:var(--surface2);border:1px solid var(--line);border-radius:7px;padding:8px 12px;font-size:12.5px;color:var(--ink);font-weight:600}
 
-  /* ---- Google search, mobile ---- */
-  .scr-g{background:#fff}
-  .gbrow{display:flex;align-items:center;gap:8px;padding:3px 11px 9px;flex:none}
-  .gbrow .lock{width:12px;height:12px;flex:none;stroke:#5f6368;fill:none;stroke-width:2}
-  .gbrow .u{flex:1;font-size:12.5px;color:#202124;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .gbrow .tabs{font-size:10px;font-weight:700;color:#5f6368;border:1.6px solid #5f6368;border-radius:4px;padding:0 4px;line-height:14px}
-  .gsearchbox{margin:0 11px 10px;display:flex;align-items:center;gap:9px;border:1px solid #dfe1e5;border-radius:999px;padding:9px 14px;flex:none}
-  .gsearchbox svg{width:14px;height:14px;stroke:#5f6368;fill:none;stroke-width:2.2;stroke-linecap:round;flex:none}
-  .gsearchbox span{font-size:13px;color:#202124;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .gtabsrow{display:flex;gap:17px;padding:0 13px 8px;font-size:11.5px;color:#5f6368;border-bottom:1px solid #ebebeb;flex:none}
-  .gtabsrow b{color:#1a73e8;font-weight:500;border-bottom:2.5px solid #1a73e8;padding-bottom:7px}
-  .gresults{flex:1;overflow:hidden;padding:12px 13px 0}
-  .gad{border:1px solid #f0a884;border-radius:9px;padding:11px 12px;background:#fffaf7}
-  .gspon{font-size:11.5px;font-weight:700;color:#202124}
-  .gsite{display:flex;align-items:center;gap:7px;margin-top:7px}
-  .gsite i{width:19px;height:19px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-size:8px;font-weight:700;color:#0b0910;font-family:var(--mono);flex:none}
-  .gsite .d{font-size:11.5px;color:#202124;line-height:1.2}
-  .gsite .d small{display:block;color:#5f6368;font-size:10.5px}
-  .gad .gtitle{font-size:16px;line-height:1.3;color:#1a0dab;margin-top:7px;font-weight:400;letter-spacing:0;text-transform:none;font-family:inherit}
-  .gdesc{font-size:12.5px;color:#4d5156;line-height:1.45;margin-top:4px}
-  .glinks{display:flex;flex-direction:column;gap:6px;margin-top:9px;font-size:12.5px;color:#1a0dab}
-  .gorganic{margin-top:15px;opacity:.5}
-  .gorganic .r{margin-bottom:13px}
-  .gorganic .u{font-size:11px;color:#5f6368}
-  .gorganic .t{font-size:15px;color:#1a0dab;margin-top:2px}
-  .gorganic .s{font-size:12px;color:#4d5156;margin-top:2px;line-height:1.4}
-  .gadnote{margin-top:6px;font-family:var(--mono);font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#b23c17}
+  .gcard{width:100%;max-width:520px;border:1px solid var(--line);border-radius:14px;background:var(--surface2);padding:20px 22px}
+  .gspon{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.02em}
+  .gurl{font-size:12.5px;color:var(--muted);margin-top:7px;font-family:var(--mono)}
+  .ghead{font-family:var(--body);font-size:19px;line-height:1.3;color:#8ab4f8;margin-top:5px;font-weight:500}
+  .gdesc{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:6px}
+  .glinks{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:#8ab4f8}
+  .gnote{margin-top:16px;padding-top:14px;border-top:1px solid var(--line2);font-size:12.5px;color:var(--faint);line-height:1.5}
 
   /* ---- ads-manager mock: drawn to look like the real screens, so a broker
          recognises them when they log in. A permanent SIMULATED stamp and a
@@ -528,7 +478,7 @@
   .anntog[aria-pressed="true"]{color:var(--amber);border-color:var(--amber);background:rgba(255,140,59,.09)}
   @media(max-width:600px){.fbtools .r,.brtab{display:none}}
 
-  @media print{.device{box-shadow:none}.simtabs{display:none}.wmark{display:block}}
+  @media print{.phone{box-shadow:none}.simtabs{display:none}}
 
   @media print{
     body{background:#fff;color:#111;font-size:11pt}
@@ -657,18 +607,16 @@
           </div>
 
           <div class="adstage">
-
-            <!-- Instagram Reel -->
-            <div class="device" id="paneReel">
-              <div class="screen scr-reel">
+            <!-- Reel -->
+            <div class="phone" id="paneReel">
+              <div class="reel">
                 <div class="reelbg">
                   <svg viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><g fill="#0d0a12"><rect x="8" y="96" width="40" height="104"/><rect x="54" y="70" width="30" height="130"/><rect x="90" y="112" width="46" height="88"/><rect x="142" y="52" width="34" height="148"/><rect x="182" y="88" width="42" height="112"/><rect x="230" y="66" width="28" height="134"/><rect x="264" y="104" width="34" height="96"/></g></svg>
                 </div>
                 <div class="reelscrim"></div>
                 <div class="reelplace">your footage here</div>
-                <div class="island"></div>
-                <span class="simchip">Simulated</span>
-                <div class="stbar dk"><span>9:41</span><span><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 11.2 5.6 8.6a3.4 3.4 0 0 1 4.8 0zM8 6.1a5.9 5.9 0 0 0-4.2 1.7L2.3 6.3a8 8 0 0 1 11.4 0l-1.5 1.5A5.9 5.9 0 0 0 8 6.1zM8 2.2a9.7 9.7 0 0 0-6.9 2.8L0 3.6a11.8 11.8 0 0 1 16 0L14.9 5A9.7 9.7 0 0 0 8 2.2z"/></svg><svg viewBox="0 0 26 12" fill="none"><rect x=".7" y=".7" width="21" height="10.6" rx="3" stroke="currentColor" stroke-opacity=".45"/><rect x="2.4" y="2.4" width="16" height="7.2" rx="1.7" fill="currentColor"/><path d="M23.4 4.3v3.4a2 2 0 0 0 0-3.4z" fill="currentColor" fill-opacity=".45"/></svg></span></div>
+                <div class="reelstamp">Simulated</div>
+                <div class="reelstatus"><span>9:41</span></div>
                 <div class="reelbars"><i></i><i></i><i></i></div>
                 <div class="zone z1"><span>App UI sits over this</span></div>
                 <div class="zone z2"><span>Caption + button cover this</span></div>
@@ -686,6 +634,7 @@
                     <div class="reelspon">Sponsored</div>
                   </div>
                   <div class="reelcta">Send WhatsApp message</div>
+                  <div class="reelhome"><i></i></div>
                 </div>
                 <div class="reelrail">
                   <figure><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A4 4 0 0 1 12 8a4 4 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></svg>1,284</figure>
@@ -693,87 +642,30 @@
                   <figure><svg viewBox="0 0 24 24"><path d="M22 3 11 14M22 3l-7 18-4-7-7-4 18-7z"/></svg>412</figure>
                   <figure><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg></figure>
                 </div>
-                <div class="devhome dk"><i></i></div>
               </div>
             </div>
 
-            <!-- Facebook feed, mobile -->
-            <div class="device" id="paneFeed" hidden>
-              <div class="screen">
-                <div class="island"></div>
-                <div class="stbar"><span>9:41</span><span><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 11.2 5.6 8.6a3.4 3.4 0 0 1 4.8 0zM8 6.1a5.9 5.9 0 0 0-4.2 1.7L2.3 6.3a8 8 0 0 1 11.4 0l-1.5 1.5A5.9 5.9 0 0 0 8 6.1zM8 2.2a9.7 9.7 0 0 0-6.9 2.8L0 3.6a11.8 11.8 0 0 1 16 0L14.9 5A9.7 9.7 0 0 0 8 2.2z"/></svg><svg viewBox="0 0 26 12" fill="none"><rect x=".7" y=".7" width="21" height="10.6" rx="3" stroke="currentColor" stroke-opacity=".45"/><rect x="2.4" y="2.4" width="16" height="7.2" rx="1.7" fill="currentColor"/><path d="M23.4 4.3v3.4a2 2 0 0 0 0-3.4z" fill="currentColor" fill-opacity=".45"/></svg></span></div>
-                <div class="fbhead">
-                  <span class="fbwm">facebook</span>
-                  <span class="fbicons">
-                    <i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i>
-                    <i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></i>
-                  </span>
-                </div>
-                <div class="fbfeed">
-                  <div class="fbpost">
-                    <div class="fbtop">
-                      <span class="av" id="adAv2">YB</span>
-                      <div style="min-width:0">
-                        <div class="nm" id="feedNm">Your brokerage</div>
-                        <div class="sp">Sponsored &middot; <svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:none;stroke:#65676B;stroke-width:2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg></div>
-                      </div>
-                      <span class="dots">&middot;&middot;&middot;</span>
-                    </div>
-                    <div class="fbcap" id="feedCap">Cheapest 3BHK in this tower. Here is the catch &mdash; and why I would still buy it.</div>
-                    <div class="fbimg"><span class="simchip">Simulated</span><div class="ov" id="feedOv">&#8377;1.42 Cr<br>Whitefield</div><div class="ph">your footage here</div></div>
-                    <div class="fblink">
-                      <div style="min-width:0"><div class="u" id="feedUrl">yourbrokerage.in</div><div class="t" id="feedT">Park Grove Residences &mdash; 3BHK</div></div>
-                      <span class="fbbtn">WhatsApp</span>
-                    </div>
-                    <div class="fbcounts"><span class="rx"><b style="background:#1877F2">&#128077;</b><b style="background:#F3425F">&#10084;</b></span> 128 &nbsp;&middot;&nbsp; 14 comments</div>
-                    <div class="fbacts"><span>Like</span><span>Comment</span><span>Send</span><span>Share</span></div>
-                  </div>
-                </div>
-                <div class="fbnavbar">
-                  <svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
-                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M4 8h16l-1 12H5z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10 21h4"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-                </div>
-                <div class="devhome"><i></i></div>
+            <!-- Feed -->
+            <div class="fbcard" id="paneFeed" hidden>
+              <div class="fbtop"><span class="av" id="adAv2">YB</span>
+                <div><div class="nm" id="feedNm">Your brokerage</div><div class="sp">Sponsored</div></div></div>
+              <div class="fbcap" id="feedCap">Cheapest 3BHK in this tower. Here is the catch &mdash; and why I would still buy it.</div>
+              <div class="fbimg"><div class="ov" id="feedOv">&#8377;1.42 Cr<br>Whitefield</div></div>
+              <div class="fblink">
+                <div style="min-width:0"><div class="u" id="feedUrl">yourbrokerage.in</div><div class="t" id="feedT">Park Grove Residences &mdash; 3BHK</div></div>
+                <span class="fbbtn">WhatsApp</span>
               </div>
             </div>
 
-            <!-- Google search, mobile -->
-            <div class="device" id="paneSearch" hidden>
-              <div class="screen scr-g">
-                <div class="island"></div>
-                <div class="stbar"><span>9:41</span><span><svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 11.2 5.6 8.6a3.4 3.4 0 0 1 4.8 0zM8 6.1a5.9 5.9 0 0 0-4.2 1.7L2.3 6.3a8 8 0 0 1 11.4 0l-1.5 1.5A5.9 5.9 0 0 0 8 6.1zM8 2.2a9.7 9.7 0 0 0-6.9 2.8L0 3.6a11.8 11.8 0 0 1 16 0L14.9 5A9.7 9.7 0 0 0 8 2.2z"/></svg><svg viewBox="0 0 26 12" fill="none"><rect x=".7" y=".7" width="21" height="10.6" rx="3" stroke="currentColor" stroke-opacity=".45"/><rect x="2.4" y="2.4" width="16" height="7.2" rx="1.7" fill="currentColor"/><path d="M23.4 4.3v3.4a2 2 0 0 0 0-3.4z" fill="currentColor" fill-opacity=".45"/></svg></span></div>
-                <div class="gbrow">
-                  <svg class="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-                  <span class="u">google.com</span>
-                  <span class="tabs">4</span>
-                </div>
-                <div class="gsearchbox">
-                  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-                  <span id="gQuery">3 bhk flat in whitefield</span>
-                </div>
-                <div class="gtabsrow"><b>All</b><span>Images</span><span>Maps</span><span>News</span><span>Videos</span></div>
-                <div class="gresults">
-                  <div class="gad">
-                    <span class="simchip">Simulated</span>
-                    <div class="gspon">Sponsored</div>
-                    <div class="gsite"><i id="gIni">YB</i><div class="d" id="gSite">Your brokerage<small id="gUrl">yourbrokerage.in &rsaquo; whitefield</small></div></div>
-                    <div class="gtitle" id="gHead">3BHK in Whitefield from &#8377;1.42 Cr | Park Grove Residences</div>
-                    <div class="gdesc" id="gDesc">Ready-to-move 3BHK apartments in Whitefield. Floor plans, real photographs and the full cost sheet on WhatsApp in two minutes.</div>
-                    <div class="glinks"><span>Floor plans &amp; price breakup</span><span>Book a site visit</span></div>
-                    <div class="gadnote">Your ad &mdash; above every free listing below</div>
-                  </div>
-                  <div class="gorganic">
-                    <div class="r"><div class="u">99acres.com</div><div class="t" id="org1">3 BHK Flats in Whitefield</div><div class="s">1,240+ properties for sale. Verified listings, photos and price trends.</div></div>
-                    <div class="r"><div class="u">magicbricks.com</div><div class="t" id="org2">3 BHK Apartments for Sale in Whitefield</div><div class="s">Browse ready-to-move and under-construction projects nearby.</div></div>
-                  </div>
-                </div>
-                <div class="devhome"><i></i></div>
-              </div>
+            <!-- Search -->
+            <div class="gcard" id="paneSearch" hidden>
+              <div class="gspon">Sponsored</div>
+              <div class="gurl" id="gUrl">yourbrokerage.in &rsaquo; whitefield &rsaquo; park-grove-residences</div>
+              <div class="ghead" id="gHead">3BHK in Whitefield from &#8377;1.42 Cr | Park Grove Residences</div>
+              <div class="gdesc" id="gDesc">Ready-to-move 3BHK apartments in Whitefield. Floor plans, actual photos and the full cost sheet on WhatsApp in two minutes. Site visits every day.</div>
+              <div class="glinks"><span>Floor plans</span><span>Price breakup</span><span>Book a site visit</span></div>
+              <div class="gnote">This one is text, not footage &mdash; Google catches the person who has already typed your locality into the search bar. It is the smallest audience on this page and the one that closes best.</div>
             </div>
-
           </div>
         </div>
       </div>
@@ -2046,16 +1938,12 @@
     $('feedT').textContent   = v.project + ' — ' + v.config;
 
     /* Search */
+    var slug = v.project.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
     var aslug = v.area.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-    $('gQuery').textContent = v.config.toLowerCase() + ' flat in ' + v.area.toLowerCase();
-    $('gIni').textContent   = ini;
-    $('gSite').innerHTML    = esc(v.brand) + '<small>' + esc(hn) + '.in &rsaquo; ' + esc(aslug) + '</small>';
-    $('gHead').textContent  = v.config + ' in ' + v.area + ' from ' + v.price + ' | ' + v.project;
-    $('gDesc').textContent  = 'Ready-to-move ' + v.config + ' apartments in ' + v.area +
-      '. Floor plans, real photographs and the full cost sheet on WhatsApp in two minutes.';
-    /* the free listings you are sitting above should name the same locality */
-    $('org1').textContent = v.config.replace('BHK',' BHK') + ' Flats in ' + v.area;
-    $('org2').textContent = v.config.replace('BHK',' BHK') + ' Apartments for Sale in ' + v.area;
+    $('gUrl').innerHTML  = esc(hn) + '.in &rsaquo; ' + esc(aslug) + ' &rsaquo; ' + esc(slug);
+    $('gHead').textContent = v.config + ' in ' + v.area + ' from ' + v.price + ' | ' + v.project;
+    $('gDesc').textContent = 'Ready-to-move ' + v.config + ' apartments in ' + v.area +
+      '. Floor plans, real photographs and the full cost sheet on WhatsApp in two minutes. Site visits every day.';
   }
 
   ['adBrand','adProject','adArea','adPrice'].forEach(function(id){
