@@ -201,12 +201,28 @@
   img{max-width:100%;height:auto}
 
   :root{
-    --bg:#07060A; --surface:#16131C; --surface2:#1D1926; --ink:#F4EDE2;
-    --muted:rgba(244,237,226,.62); --faint:rgba(244,237,226,.4);
-    --line:rgba(244,237,226,.14); --line2:rgba(244,237,226,.08);
-    --amber:#E8763A; --amber-deep:#B8481F; --amber-soft:rgba(232,118,58,.16);
-    --teal:#E8763A; --teal-soft:rgba(232,118,58,.14);   /* teal retired — one accent only */
-    --good:#5BD98A; --warn:#FFB443; --bad:#FF6B6B;
+    /* Surfaces are three genuinely separate steps, not a 4% difference nobody
+       can see. Text is cool grey rather than one cream at four opacities, so
+       secondary copy reads as a decision instead of as faded primary copy. */
+    --bg:#0A0A0E; --surface:#191921; --surface2:#24242F; --raised:#32323F;
+    --ink:#F5F6F8; --muted:#A7AAB8; --faint:#8B8F9E;
+    --line:rgba(255,255,255,.11); --line2:rgba(255,255,255,.055);
+
+    /* The accent has one job: things you can interact with, plus the single
+       most important figure in a section. It is blue because green, amber and
+       red are already spoken for by the status system — rise and turn, Active
+       and Learning and Limited, the planner flags. A warm accent gets read as
+       a warning state inside the dashboards. */
+    /* No accent hue. Emphasis is carried by weight, fill and bone-white.
+       That leaves the status colours below as the ONLY chroma on the page,
+       so green, amber and red actually mean something when they appear
+       instead of competing with a brand colour for attention. */
+    --accent:#EDE9E1;      /* bone — links, active states, hairline emphasis */
+    --accent-deep:#FFFFFF; /* solid fills, with near-black text on top */
+    --accent-soft:rgba(237,233,225,.09);
+    --amber:var(--accent); --amber-deep:var(--accent-deep); --amber-soft:var(--accent-soft);
+    --teal:var(--accent); --teal-soft:var(--accent-soft);
+    --good:#4ADE80; --warn:#F5A524; --bad:#F76C6C;
     --disp:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
     --serif:'Fraunces',Georgia,'Times New Roman',serif;
     --body:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -222,7 +238,8 @@
   .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
   @media(min-width:900px){.wrap{padding:0 40px}}
   .mono{font-family:var(--mono)}
-  a{color:var(--amber);text-underline-offset:3px}
+  a{color:var(--ink);text-underline-offset:3px;text-decoration-color:rgba(237,233,225,.42);text-decoration-thickness:1px}
+  a:hover{text-decoration-color:var(--ink)}
 
   /* Type scale built for scanning: statements are big, support text is short. */
   /* The eyebrow used to sit above every single heading. It now appears on two
@@ -262,11 +279,11 @@
   .topline a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
   .curpick{display:flex;align-items:center;gap:9px}
   .curpick label{color:var(--faint);font-size:13.5px}
-  .curpick select{background:var(--surface);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+  .curpick select{background:var(--surface2);border:1px solid var(--line);border-radius:4px;color:var(--ink);
     font-family:var(--body);font-size:14px;padding:7px 10px;cursor:pointer}
   .curpick select:focus{outline:0;border-color:var(--amber)}
   .ratebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--faint);margin-top:14px}
-  .ratebar input{width:88px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+  .ratebar input{width:88px;background:var(--surface2);border:1px solid var(--line);border-radius:4px;color:var(--ink);
     font-family:var(--mono);font-size:13px;padding:5px 8px}
   .ratebar input:focus{outline:0;border-color:var(--amber)}
   .ratebar b{color:var(--muted);font-weight:400}
@@ -289,7 +306,10 @@
   h1{position:relative;font-size:40px;line-height:1.02;letter-spacing:-.04em;max-width:18ch}
   @media(min-width:720px){h1{font-size:58px}}
   @media(min-width:1000px){h1{font-size:72px;max-width:22ch}}
-  h1 .a{color:var(--amber)}
+  /* no accent hue, so the verb is emphasised by a rule under it rather than colour */
+  h1 .a{color:var(--ink);position:relative;white-space:nowrap}
+  h1 .a::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:4px;background:var(--accent);border-radius:2px}
+  @media(max-width:720px){h1 .a::after{height:3px}}
   h1 .t{color:var(--ink);font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.02em}
   .hsub b{color:var(--ink);font-weight:600}
   .hsub{position:relative;font-size:19px;color:var(--muted);max-width:40ch;margin-top:var(--s3);line-height:1.5}
@@ -298,8 +318,8 @@
 
   .btns{position:relative;display:flex;gap:12px;flex-wrap:wrap;margin-top:var(--s5)}
   .btn{font-family:var(--body);font-size:16px;letter-spacing:-.005em;text-decoration:none;padding:14px 24px;border-radius:3px;font-weight:600;transition:.18s;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
-  .btn.p{background:var(--amber);color:#07060A;border-color:var(--amber)}
-  .btn.p:hover{filter:brightness(1.1);color:#07060A}
+  .btn.p{background:var(--accent-deep);color:#0A0A0E;border-color:var(--accent-deep)}
+  .btn.p:hover{background:var(--accent);border-color:var(--accent);color:#0A0A0E}
   .btn:hover{border-color:var(--amber);color:var(--amber)}
 
   /* ---------- what I do: four lines, nothing more ---------- */
@@ -347,9 +367,9 @@
   @media(max-width:820px){.ctrlgrid{grid-template-columns:1fr}}
 
   .seglbl{font-size:13px;color:var(--faint);margin-bottom:8px}
-  .seg{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:4px}
+  .seg{display:flex;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:4px}
   .seg button{flex:1;background:transparent;border:0;color:var(--muted);font-size:14.5px;padding:10px 8px;border-radius:3px;cursor:pointer;transition:.18s}
-  .seg button[aria-pressed="true"]{background:var(--amber);color:#07060A;font-weight:600}
+  .seg button[aria-pressed="true"]{background:var(--accent-deep);color:#0A0A0E;font-weight:600}
   .seg button:hover:not([aria-pressed="true"]){color:var(--ink)}
 
   .fld{margin-top:22px}
@@ -376,10 +396,10 @@
   .prow .blocked{font-family:var(--mono);font-size:10.5px;color:var(--bad);margin-top:6px}
   .sumline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted);flex-wrap:wrap}
   .sumline b{color:var(--ink)} .sumline .over{color:var(--warn)}
-  .minibtn{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--body);font-size:13px;letter-spacing:0;padding:8px 14px;border-radius:3px;cursor:pointer;transition:.2s}
+  .minibtn{background:var(--surface2);border:1px solid var(--line);color:var(--muted);font-family:var(--body);font-size:13px;letter-spacing:0;padding:8px 14px;border-radius:3px;cursor:pointer;transition:.2s}
   .minibtn:hover{border-color:var(--amber);color:var(--amber)}
 
-  .results{border-top:1px solid var(--line);background:var(--bg);padding:var(--s3)}
+  .results{border-top:1px solid var(--line);background:var(--surface2);padding:var(--s3)}
   @media(min-width:760px){.results{padding:var(--s4)}}
   .kpis{display:grid;grid-template-columns:repeat(2,1fr);column-gap:var(--s4);border-top:1px solid var(--line)}
   @media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}}
@@ -446,14 +466,14 @@
   .actin{display:grid;grid-template-columns:1fr;gap:var(--s2);padding:var(--s5) 0}
   @media(min-width:820px){.actin{grid-template-columns:104px 1fr;gap:var(--s5);padding:var(--s6) 0;align-items:start}}
   .actn{font-family:var(--disp);font-size:46px;font-weight:800;letter-spacing:-.04em;line-height:.82;
-    color:transparent;-webkit-text-stroke:1px var(--amber)}
+    color:transparent;-webkit-text-stroke:1px var(--accent);opacity:.8}
   .acth{font-family:var(--disp);font-size:29px;font-weight:700;letter-spacing:-.03em;line-height:1.08;margin:0;color:var(--ink)}
   @media(min-width:820px){.acth{font-size:38px}}
   .actd{margin:var(--s2) 0 0;font-size:17px;line-height:1.55;color:var(--muted);max-width:50ch}
 
   /* thin progress line, and a chapter bar that appears once the hero is behind you */
   .prog{position:fixed;top:0;left:0;height:2px;background:var(--amber);width:0;z-index:60;transition:width .1s linear}
-  .chapnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(7,6,10,.88);
+  .chapnav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,14,.88);
     -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
     transform:translateY(-100%);transition:transform .28s ease}
   .chapnav.on{transform:none}
@@ -463,9 +483,9 @@
   .chapnav a{color:var(--faint);text-decoration:none;font-size:13.5px;white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;transition:.18s}
   .chapnav a:hover{color:var(--ink)}
   .chapnav a.on{color:var(--amber);border-bottom-color:var(--amber)}
-  .chapnav .cta{margin-left:auto;flex:none;background:var(--amber);color:#07060A;border-radius:3px;
+  .chapnav .cta{margin-left:auto;flex:none;background:var(--accent-deep);color:#0A0A0E;border-radius:3px;
     padding:8px 14px;font-weight:600;font-size:13.5px;border-bottom:0}
-  .chapnav .cta:hover{color:#07060A;filter:brightness(1.08)}
+  .chapnav .cta:hover{color:#0A0A0E;background:var(--accent)}
   @media(max-width:700px){.chapnav .cta{display:none}}
 
   /* the promise, given its own band and room to be read.
@@ -519,10 +539,10 @@
 
   /* mobile keeps a way to act without scrolling back */
   .mobar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:8px;padding:10px 14px;
-    background:rgba(7,6,10,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    background:rgba(10,10,14,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
     border-top:1px solid var(--line)}
   .mobar a{flex:1;text-align:center;text-decoration:none;border-radius:4px;padding:13px 10px;font-size:15px;font-weight:600}
-  .mobar .w{background:var(--amber);color:#07060A}
+  .mobar .w{background:var(--accent-deep);color:#0A0A0E}
   .mobar .c{border:1px solid var(--line);color:var(--ink);flex:0 0 44%}
   @media(max-width:760px){.mobar{display:flex} body{padding-bottom:70px}}
   @media print{.mobar,.chapnav,.prog{display:none}}
@@ -557,7 +577,7 @@
   .barrow .lbl{flex:0 0 96px;display:block;font-size:13px;color:var(--faint);text-align:right}
   .barrow .track{flex:1;display:block;height:15px;border-radius:3px;background:var(--line2);overflow:hidden}
   .barrow .fill{display:block;min-width:6px;height:100%;border-radius:3px;background:rgba(244,237,226,.22)}
-  .barrow.to .fill{background:linear-gradient(90deg,var(--amber-deep),var(--amber))}
+  .barrow.to .fill{background:linear-gradient(90deg,#6A6E7D,var(--accent))}
   /* fixed basis so both tracks end on the same line — a ragged right edge here
      is exactly the detail that makes a page look machine-assembled */
   .barrow .amt{flex:0 0 96px;display:block;font-family:var(--disp);font-size:16px;font-weight:700;color:var(--muted);letter-spacing:-.02em}
@@ -704,7 +724,7 @@
   @media(max-width:800px){.adgrid{grid-template-columns:1fr;gap:26px}}
   .adfields .fld{margin-bottom:15px}
   .adfields label{display:block;font-size:13.5px;color:var(--faint);margin-bottom:7px}
-  .adfields input,.adfields select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:var(--body);font-size:14.5px;padding:9px 11px}
+  .adfields input,.adfields select{width:100%;background:var(--surface2);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:var(--body);font-size:14.5px;padding:9px 11px}
   .adfields input:focus,.adfields select:focus{outline:0;border-color:var(--amber)}
   .adnote{font-size:12.5px;color:var(--faint);line-height:1.5;margin-top:16px}
   .adstage{display:flex;justify-content:center}
@@ -742,13 +762,13 @@
   .reelspacer{flex:1}
   .reelfoot{margin-right:60px;padding-bottom:2px}
   .reeltop{display:flex;align-items:center;gap:8px}
-  .av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-family:var(--mono);font-size:9.5px;font-weight:700;color:#0b0910;flex:none;border:1.5px solid rgba(255,255,255,.9)}
+  .av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#4A4A57,#2A2A35);display:grid;place-items:center;font-family:var(--mono);font-size:9.5px;font-weight:700;color:#fff;flex:none;border:1.5px solid rgba(255,255,255,.9)}
   .reeltop .nm{font-size:12.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .reelfollow{flex:none;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.85);border-radius:6px;padding:3px 8px}
   .reelcap{font-size:12px;line-height:1.35;margin-top:8px;max-width:23ch}
   .reelcap .h{color:rgba(255,255,255,.62)}
   .reelspon{font-size:10.5px;color:rgba(255,255,255,.74);margin-top:6px;font-weight:500}
-  .reelcta{margin:9px -12px 0;background:rgba(255,255,255,.97);color:#0b0910;padding:12px 14px;display:flex;align-items:center;font-size:13px;font-weight:600}
+  .reelcta{margin:9px -12px 0;background:rgba(255,255,255,.97);color:#0A0A0E;padding:12px 14px;display:flex;align-items:center;font-size:13px;font-weight:600}
   .reelcta::after{content:'›';margin-left:auto;font-size:19px;line-height:1;opacity:.5}
   .reelrail{position:absolute;right:8px;bottom:104px;display:flex;flex-direction:column;gap:16px;align-items:center;z-index:4}
   .reelrail figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:600;text-shadow:0 1px 5px rgba(0,0,0,.6)}
@@ -803,7 +823,7 @@
   .gad{border:1px solid #f0a884;border-radius:9px;padding:11px 12px;background:#fffaf7}
   .gspon{font-size:11.5px;font-weight:700;color:#202124}
   .gsite{display:flex;align-items:center;gap:7px;margin-top:7px}
-  .gsite i{width:19px;height:19px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:grid;place-items:center;font-size:8px;font-weight:700;color:#0b0910;font-family:var(--mono);flex:none}
+  .gsite i{width:19px;height:19px;border-radius:50%;background:linear-gradient(135deg,#4A4A57,#2A2A35);display:grid;place-items:center;font-size:8px;font-weight:700;color:#fff;font-family:var(--mono);flex:none}
   .gsite .d{font-size:11.5px;color:#202124;line-height:1.2}
   .gsite .d small{display:block;color:#5f6368;font-size:10.5px}
   .gad .gtitle{font-size:16px;line-height:1.3;color:#1a0dab;margin-top:7px;font-weight:400;letter-spacing:0;text-transform:none;font-family:inherit}
@@ -993,7 +1013,7 @@
   .mgr th:first-child .ann{max-width:30ch}
   .simempty{padding:44px 20px;text-align:center;color:#65676b;font-size:14px;line-height:1.6;max-width:56ch;margin:0 auto;background:#fff}
   .simempty b{color:#1c1e21}
-  .anntog{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 13px;background:var(--bg);transition:.15s}
+  .anntog{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--surface2);transition:.15s}
   .anntog:hover{color:var(--ink);border-color:var(--amber)}
   .anntog[aria-pressed="true"]{color:var(--amber);border-color:var(--amber);background:rgba(255,140,59,.09)}
   @media(max-width:600px){.fbtools .r,.brtab{display:none}}
