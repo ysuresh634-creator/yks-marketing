@@ -483,6 +483,53 @@
   .creedsub{margin:var(--s3) 0 0;max-width:46ch;font-size:16px;line-height:1.6;color:var(--muted)}
   @media(min-width:820px){.creedsub{margin:0 0 5px}}
 
+  /* ---------- conversion layer ---------- */
+  .sendplan{margin-top:var(--s4);border:1px solid rgba(232,118,58,.42);border-radius:14px;
+    background:rgba(232,118,58,.07);padding:var(--s4) var(--s3)}
+  @media(min-width:760px){.sendplan{padding:var(--s4)}}
+  .sendplan h3{font-size:24px;margin:0 0 10px}
+  @media(min-width:760px){.sendplan h3{font-size:29px}}
+  .sendplan p{margin:0;font-size:16px;line-height:1.55;color:var(--muted);max-width:56ch}
+  .sendplan p b{color:var(--ink)}
+  .sendrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:var(--s3);align-items:center}
+  .sendrow .btn{font-size:15px;padding:13px 20px}
+  .copied{font-size:14px;color:var(--good);opacity:0;transition:opacity .2s}
+  .copied.on{opacity:1}
+  .planprev{margin-top:var(--s3);border-top:1px dashed var(--line);padding-top:var(--s2);
+    font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--faint);white-space:pre-wrap;
+    max-height:190px;overflow:auto}
+
+  .steps{display:grid;grid-template-columns:1fr;margin-top:var(--s5);border-top:1px solid var(--line)}
+  @media(min-width:860px){.steps{grid-template-columns:repeat(4,1fr);column-gap:var(--s4)}}
+  .steps .s{padding:var(--s3) 0;border-bottom:1px solid var(--line2)}
+  @media(min-width:860px){.steps .s{border-bottom:0;padding:var(--s3) 0 0}}
+  .steps .n{font-family:var(--mono);font-size:12px;color:var(--amber)}
+  .steps .t{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.02em;margin:8px 0 6px;color:var(--ink)}
+  .steps .d{font-size:15px;color:var(--muted);line-height:1.5}
+
+  .guar{margin-top:var(--s5);border:1px solid var(--line);border-radius:14px;padding:var(--s4) var(--s3);background:var(--surface)}
+  @media(min-width:760px){.guar{padding:var(--s4)}}
+  .guar .gh{font-family:var(--disp);font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:0 0 var(--s2)}
+  .guar ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:11px}
+  @media(min-width:760px){.guar ul{grid-template-columns:1fr 1fr;gap:12px var(--s4)}}
+  .guar li{position:relative;padding-left:26px;font-size:15.5px;line-height:1.5;color:var(--muted)}
+  .guar li::before{content:'';position:absolute;left:3px;top:8px;width:9px;height:9px;border-radius:50%;
+    border:2px solid var(--amber)}
+  .guar li b{color:var(--ink);font-weight:600}
+
+  .capacity{margin-top:var(--s3);font-size:15px;color:var(--muted);line-height:1.55;max-width:52ch}
+  .capacity b{color:var(--amber)}
+
+  /* mobile keeps a way to act without scrolling back */
+  .mobar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:8px;padding:10px 14px;
+    background:rgba(7,6,10,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border-top:1px solid var(--line)}
+  .mobar a{flex:1;text-align:center;text-decoration:none;border-radius:4px;padding:13px 10px;font-size:15px;font-weight:600}
+  .mobar .w{background:var(--amber);color:#07060A}
+  .mobar .c{border:1px solid var(--line);color:var(--ink);flex:0 0 44%}
+  @media(max-width:760px){.mobar{display:flex} body{padding-bottom:70px}}
+  @media print{.mobar,.chapnav,.prog{display:none}}
+
   .own{margin-top:40px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
   .own-r{display:grid;grid-template-columns:1fr 180px;gap:16px;padding:15px 22px;border-top:1px solid var(--line2);align-items:center;font-size:15px}
   .own-r:first-child{border-top:0;background:var(--surface2)}
@@ -877,6 +924,10 @@
 <body>
 
 <div class="prog" id="prog"></div>
+<div class="mobar">
+  <a class="w" id="moWa" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20I%20read%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a>
+  <a class="c" href="tel:+919746679720">Call</a>
+</div>
 <nav class="chapnav" id="chapnav" aria-label="Sections">
   <div class="in">
     <a href="#act1" data-a="act1">01 What I do</a>
@@ -1432,8 +1483,23 @@
 
         <div class="flags" id="flags"></div>
 
+        <div class="sendplan">
+          <h3>Take this plan with you.</h3>
+          <p>You have just spent a few minutes building this on your own numbers. <b>Do not let it disappear
+            when you close the tab.</b> One tap sends it to me exactly as you have set it &mdash; your budget,
+            your sale value, your margin, your close rate and what it projects &mdash; so the first thing I ever
+            say to you is already about your business rather than mine.</p>
+          <div class="sendrow">
+            <a class="btn p" id="planWa" href="#" target="_blank" rel="noopener">Send me this plan on WhatsApp</a>
+            <button class="btn" id="planCopy" type="button">Copy it</button>
+            <a class="btn" id="planMail" href="#">Email it instead</a>
+            <span class="copied" id="planCopied">Copied &mdash; paste it anywhere</span>
+          </div>
+          <div class="planprev" id="planPrev"></div>
+        </div>
+
         <p class="disclaim">
-          <b>This is a projection, not a promise.</b> It is built from published 2025&ndash;26 costs, listed at the bottom of this page &mdash; not from a campaign I have already run for you. Real numbers move with the area, the offer, the creative and how fast your team calls back. Anyone who guarantees you a cost per lead before running a single ad is guessing, or lying. Both currencies shown throughout at AED&nbsp;1&nbsp;=&nbsp;&#8377;25.98; switching market changes the underlying costs, not just the symbol.
+          <b>This is a projection, not a promise.</b> It is built from published 2025&ndash;26 costs, listed at the bottom of this page &mdash; not from a campaign I have already run for you. Real numbers move with the area, the offer, the creative and how fast your team calls back. Anyone who guarantees you a cost per lead before running a single ad is guessing, or lying. Switching the market at the top of this panel changes the underlying benchmark costs, not just the currency symbol &mdash; India and Dubai are genuinely different ad auctions.
         </p>
       </div>
     </div>
@@ -1988,9 +2054,38 @@
     <p class="say" style="color:var(--faint);font-size:15px;max-width:48ch;margin-bottom:30px">That takes me about an hour and there is no charge for it &mdash; and no meeting attached, because you should not have to sit through a pitch to find out what your money is currently buying. If what comes back is useful and you would rather hand it to somebody else, that is genuinely fine.</p>
     <p class="say" style="font-family:var(--mono);font-size:15px;color:var(--muted);max-width:none;margin:0 auto 28px">Yedukrishna Suresh &middot; <a href="tel:+919746679720" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(31,214,201,.35)">+91 97466 79720</a></p>
     <div class="btns">
-      <a class="btn p" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20run%20the%20numbers%20on%20my%20brokerage%3F" target="_blank" rel="noopener">WhatsApp me</a>
-      <a class="btn" href="https://yksproductions.com/">See my work &#8599;</a>
-      <button class="btn" onclick="window.print()">Save as PDF</button>
+      <a class="btn p" id="ctaWa" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20I%20read%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a>
+      <a class="btn" href="tel:+919746679720">Call me</a>
+      <a class="btn" href="mailto:yksproductions893@gmail.com?subject=Enquiry%20from%20marketing.yksproductions.com">Email me</a>
+      <button class="btn" onclick="window.print()">Save this page as PDF</button>
+    </div>
+
+    <p class="capacity" style="margin-left:auto;margin-right:auto">I take <b>two new clients a quarter</b>,
+      because I do the shooting and the running myself and there is a limit to how many businesses one person
+      can be honest about at once. If both are taken when you write, I will tell you that instead of
+      selling you a waiting list.</p>
+
+    <div class="guar" style="text-align:left">
+      <p class="gh">If you are still hesitating, here is everything you are not risking.</p>
+      <ul>
+        <li><b>No lock-in.</b> Thirty days&rsquo; notice, any month, no exit fee and no reason required.</li>
+        <li><b>No advance for six months.</b> You pay month to month, like a salary, not a project.</li>
+        <li><b>You own the account before I touch it.</b> Opened in your company&rsquo;s name on day one.</li>
+        <li><b>You own everything on the way out.</b> Footage, raw files, pixel history, every lead.</li>
+        <li><b>Never a percentage of your spend.</b> A fixed fee, agreed in writing, before anything runs.</li>
+        <li><b>Firing me is two clicks.</b> Remove my user access. Nothing of yours moves.</li>
+      </ul>
+    </div>
+
+    <div class="steps" style="text-align:left">
+      <div class="s"><div class="n">Step 1</div><div class="t">You write</div>
+        <div class="d">WhatsApp, call or email &mdash; or send the plan you built above, which is faster because it arrives with your numbers in it.</div></div>
+      <div class="s"><div class="n">Step 2</div><div class="t">I reply the same day</div>
+        <div class="d">Not an assistant, not a form response. If I am on a shoot it will be that evening.</div></div>
+      <div class="s"><div class="n">Step 3</div><div class="t">Twenty minutes on a call</div>
+        <div class="d">I ask what you sell, to whom, and what you have already tried. No deck, no slides, no pitch to sit through.</div></div>
+      <div class="s"><div class="n">Step 4</div><div class="t">You get the read in writing</div>
+        <div class="d">Your numbers, an honest view of what they buy, and a fee. Then you decide, with no follow-up sequence chasing you.</div></div>
     </div>
   </div>
 </div>
@@ -2400,7 +2495,9 @@
     $('kRoas').textContent  = r.roas>0 ? r.roas.toFixed(1)+'×' : '—';
     $('kRev').textContent   = compact(r.tot.rev)+' commission earned';
     $('kCplA').textContent  = r.tot.leads>0 ? alt(r.cpl) : '';
+    lastR = r;
     renderScreens(r);
+    composePlan();
     $('kCpqA').textContent  = r.tot.qual>0  ? alt(r.cpq) : '';
     $('kCpdA').textContent  = r.tot.deals>0 ? alt(r.cpd) : '';
     $('kRevA').textContent  = alt(r.tot.rev);
@@ -2540,7 +2637,8 @@
      purpose: it must teach a broker how to read their own account
      without ever being mistakable for a screenshot of one.
   ----------------------------------------------------------------*/
-  var mgrTab = 'meta', mgrAuto = true;
+  var SEO_TITLE = document.title;
+  var mgrTab = 'meta', mgrAuto = true, lastR = null;
 
   function pill(row){
     if (row.spend <= 0)  return '<span class="pill off">Off</span>';
@@ -2693,6 +2791,78 @@
   });
   $('clientName').addEventListener('input', render);
 
+  /* ---------------------------------------------------------------
+     The planner is the lead form. Somebody who has set their own
+     budget, sale value, margin and close rate has told us far more
+     than any "name and email" box ever would — so the enquiry is
+     composed FROM those numbers and sent in one tap. No backend
+     needed, which matters on a static site.
+  ----------------------------------------------------------------*/
+  var WA = 'https://wa.me/919746679720?text=';
+
+  function planText(){
+    var name = ($('clientName').value || '').trim();
+    var L = [];
+    L.push('Hi Yedukrishna — I built a plan on your site and want to talk about it.');
+    L.push('');
+    if (name && name.toLowerCase() !== 'your brokerage') L.push('Business: ' + name);
+    L.push('Market: ' + (state.market === 'in' ? 'India' : 'Dubai') + '  (shown in ' + state.disp + ')');
+    L.push('Ad budget: ' + money(state.budget) + ' a month');
+    L.push('Average sale value: ' + money(state.price));
+    L.push('My margin: ' + state.comm.toFixed(1) + '%');
+    L.push('Bookings from qualified enquiries: ' + state.close.toFixed(1) + '%');
+    if (state.fee > 0) L.push('Fee I modelled for you: ' + money(state.fee) + ' a month');
+
+    if (lastR && lastR.tot.leads > 0){
+      L.push('');
+      L.push('What the planner projected:');
+      L.push('- ' + num(Math.round(lastR.tot.leads)) + ' enquiries at ' + money(lastR.cpl) + ' each');
+      L.push('- ' + num(Math.round(lastR.tot.qual)) + ' worth calling');
+      L.push('- ' + num(lastR.tot.deals, 1) + ' bookings');
+      L.push('- ' + compact(lastR.tot.rev) + ' back, a return of ' + lastR.roas.toFixed(1) + 'x');
+      var funded = lastR.rows.filter(function(x){ return x.spend > 0; })
+                             .map(function(x){ return x.p.name + ' ' + compact(x.spend); });
+      if (funded.length) L.push('- Split: ' + funded.join(', '));
+    }
+
+    var pspend = Number($('portal').value), pcpl = Number($('portalCpl').value);
+    if (pspend > 0 && pcpl > 0){
+      L.push('');
+      L.push('I currently spend about ' + money(pspend) + ' a month on portals, at roughly ' +
+             money(pcpl) + ' an enquiry.');
+    }
+    L.push('');
+    L.push('When can we talk?');
+    return L.join('\n');
+  }
+
+  function composePlan(){
+    var t = planText();
+    var wa = $('planWa'), ml = $('planMail'), pv = $('planPrev');
+    if (wa) wa.href = WA + encodeURIComponent(t);
+    if (ml) ml.href = 'mailto:yksproductions893@gmail.com?subject=' +
+      encodeURIComponent('My plan from marketing.yksproductions.com') + '&body=' + encodeURIComponent(t);
+    if (pv) pv.textContent = t;
+    var cw = $('ctaWa');
+    if (cw) cw.href = WA + encodeURIComponent(t);
+    var mw = $('moWa');
+    if (mw) mw.href = WA + encodeURIComponent(t);
+  }
+
+  var cbtn = $('planCopy');
+  if (cbtn) cbtn.addEventListener('click', function(){
+    var t = planText(), done = $('planCopied');
+    function flash(){ if (done){ done.classList.add('on'); setTimeout(function(){ done.classList.remove('on'); }, 2200); } }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(flash, flash);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta); flash();
+    }
+  });
+
   /* ---- wiring ---- */
   ['budget','price','comm','close','fee','rate','portal','portalCpl','agents'].forEach(function(id){
     $(id).addEventListener('input', render);
@@ -2719,7 +2889,9 @@
 
   $('clientName').addEventListener('input', function(){
     var v = this.value.trim();
-    document.title = (v ? v + ' — ' : '') + 'Ad Budget Simulator | YKS Productions';
+    /* only rename while a client name is typed, so printing a plan carries it —
+       otherwise put the real title back, because that is the one Google reads */
+    document.title = v ? (v + ' — ad plan | YKS Productions') : SEO_TITLE;
   });
 
   syncRateBar();
