@@ -1038,9 +1038,10 @@
 <body>
 <script>
 /* Region-aware contact line (same as yksproductions.com/js/contact.js).
-   India visitor -> +91 97466 79720, UAE / Gulf visitor -> +971 50 195 5122, by timezone then
+   India visitor -> the India line, UAE / Gulf visitor -> the UAE line, by timezone then
    browser language; unknown -> the page default (+91). Static HTML and JSON-LD are untouched.
-   Helper: YKS.region(), YKS.contactNumber(), YKS.waLink(text). Opt out: data-geo-keep. */
+   Helper: YKS.region(), YKS.contactNumber(), YKS.waLink(text). Opt out: data-geo-keep.
+   Numbers are linked, never printed as text (owner's rule). */
 (function () {
   var Y = window.YKS = window.YKS || {};
   if (Y.contactNumber) return;
@@ -1085,56 +1086,79 @@
   Y.waLink = function (text) {
     return 'https://wa.me/' + Y.waNumber() + (text ? '?text=' + encodeURIComponent(String(text).slice(0, 1800)) : '');
   };
-  if (!R) return;                                   // unknown: the page's own line stays
-
-  var to = LINES[R], from = LINES[OTHER[R]];
-  if (body) body.setAttribute('data-wa', to.wa);   // chat.js, landing.js, geo-wa.js read this
-  var WA_RE = new RegExp('wa\\.me/' + from.wa, 'g');
-  var TEL_RE = new RegExp('^tel:\\+?' + from.wa + '$');
-  // every way the other number is printed on the site
-  var TXT_RE = R === 'in'
-    ? /\+971[\s-]?50[\s-]?195[\s-]?5122/g
-    : /\+91[\s-]?97466[\s-]?79720|\+91[\s-]?9746679720/g;
+  /* ---------- no printed numbers ----------
+     Owner's rule: the numbers are never shown as text, only linked. Any
+     number that any script prints (e.g. the chat menu's "Call" row) is
+     replaced, before paint, with words: "Tap to call me" inside a tel: link,
+     "Message me on WhatsApp" inside a wa.me link, "my WhatsApp" elsewhere.
+     title / aria-label / alt get the same treatment. JSON-LD is untouched. */
+  var NUM_RE = /(?:\+?\s?(?:91|971)[\s.-]?)?(?:0?50[\s.-]?195[\s.-]?5122|97466[\s.-]?79720|9746679720)/g;
   var SKIP = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, NOSCRIPT: 1, TEMPLATE: 1, TITLE: 1 };
+  var ATTRS = ['title', 'aria-label', 'alt'];
+  function label(el) {
+    var a = el && el.closest && el.closest('a[href]'), h = a ? a.getAttribute('href') || '' : '';
+    return /^tel:/i.test(h) ? 'Tap to call me' : /wa\.me\//.test(h) ? 'Message me on WhatsApp' : 'my WhatsApp';
+  }
+  function scrubText(t) {
+    var p = t.parentNode, v = t.nodeValue;
+    if (!p || SKIP[p.nodeName] || !v || v.length > 4000) return;
+    NUM_RE.lastIndex = 0;
+    if (NUM_RE.test(v)) { NUM_RE.lastIndex = 0; t.nodeValue = v.replace(NUM_RE, label(p)); }
+    NUM_RE.lastIndex = 0;
+  }
+  function scrubAttrs(el) {
+    for (var i = 0; i < ATTRS.length; i++) {
+      var v = el.getAttribute && el.getAttribute(ATTRS[i]);
+      if (v) { NUM_RE.lastIndex = 0; if (NUM_RE.test(v)) { NUM_RE.lastIndex = 0; el.setAttribute(ATTRS[i], v.replace(NUM_RE, label(el))); } }
+    }
+    NUM_RE.lastIndex = 0;
+  }
+
+  var to = R && LINES[R], other = R && LINES[OTHER[R]];
+  if (R && body) body.setAttribute('data-wa', to.wa);   // chat.js, landing.js, geo-wa.js read this
+  var WA_RE = R && new RegExp('wa\\.me/' + other.wa, 'g');
+  var TEL_RE = R && new RegExp('^tel:\\+?' + other.wa + '$');
 
   function kept(el) { return el && el.closest && el.closest('[data-geo-keep]'); }
   function fixLink(a) {
+    if (!R) return;                                  // unknown region: the page's own line stays
     var h = a.getAttribute('href');
     if (!h || kept(a)) return;
-    if (h.indexOf('wa.me/' + from.wa) !== -1) a.setAttribute('href', h.replace(WA_RE, 'wa.me/' + to.wa));
+    if (h.indexOf('wa.me/' + other.wa) !== -1) a.setAttribute('href', h.replace(WA_RE, 'wa.me/' + to.wa));
     else if (TEL_RE.test(h)) a.setAttribute('href', 'tel:' + to.tel);
   }
-  function fixText(t) {
-    var p = t.parentNode;
-    if (!p || SKIP[p.nodeName] || kept(p)) return;
-    var v = t.nodeValue;
-    if (v && v.length < 4000 && TXT_RE.test(v)) { TXT_RE.lastIndex = 0; t.nodeValue = v.replace(TXT_RE, to.display); }
-    TXT_RE.lastIndex = 0;
-  }
   function scan(n) {
-    if (n.nodeType === 3) { fixText(n); return; }
+    if (n.nodeType === 3) { scrubText(n); return; }
     if (n.nodeType !== 1 || SKIP[n.nodeName]) return;
     if (n.nodeName === 'A') fixLink(n);
+    scrubAttrs(n);
     var as = n.getElementsByTagName ? n.getElementsByTagName('a') : [];
     for (var i = 0; i < as.length; i++) fixLink(as[i]);
+    var at = n.querySelectorAll ? n.querySelectorAll('[title],[aria-label],[alt]') : [];
+    for (var k = 0; k < at.length; k++) scrubAttrs(at[k]);
     if (n.firstChild) {
       var w = document.createTreeWalker(n, 4, null, false), t;
-      while ((t = w.nextNode())) fixText(t);
+      while ((t = w.nextNode())) scrubText(t);
     }
   }
-  // swap as the parser (and later, any script) adds nodes
+  // as the parser (and later, any script) adds nodes
   var mo = window.MutationObserver && new MutationObserver(function (list) {
     for (var i = 0; i < list.length; i++) {
       var m = list[i];
-      if (m.type === 'attributes') { if (m.target.nodeName === 'A') fixLink(m.target); continue; }
-      if (m.type === 'characterData') { fixText(m.target); continue; }
+      if (m.type === 'attributes') { if (m.attributeName === 'href') { if (m.target.nodeName === 'A') fixLink(m.target); } else scrubAttrs(m.target); continue; }
+      if (m.type === 'characterData') { scrubText(m.target); continue; }
       for (var j = 0; j < m.addedNodes.length; j++) scan(m.addedNodes[j]);
     }
   });
-  if (mo) mo.observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['href'] });
-  function full() { if (document.body) { if (!document.body.getAttribute('data-wa') || document.body.getAttribute('data-wa') !== to.wa) document.body.setAttribute('data-wa', to.wa); scan(document.body); } }
+  if (mo) mo.observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['href', 'title', 'aria-label', 'alt'] });
+  function full() {
+    var b = document.body; if (!b) return;
+    if (R && b.getAttribute('data-wa') !== to.wa) b.setAttribute('data-wa', to.wa);
+    scan(b);
+  }
   full();
   document.addEventListener('DOMContentLoaded', full);
+  if (!R) return;
   // forms that let the visitor pick a WhatsApp line start on theirs
   document.addEventListener('DOMContentLoaded', function () {
     var sel = document.getElementById('f-region');
@@ -1203,7 +1227,11 @@
       <div>
         <p class="ct">Where, and how to reach me</p>
         <p>Bengaluru &middot; Dubai &middot; across India and the UAE</p>
-        <p style="margin-top:10px" data-geo-keep><a href="tel:+919746679720">+91&nbsp;97466&nbsp;79720</a> (India) &middot; <a href="https://wa.me/971501955122" target="_blank" rel="noopener">+971&nbsp;50&nbsp;195&nbsp;5122</a> (Dubai)</p>
+        <p class="reach" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="minibtn" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20saw%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener" style="text-decoration:none;color:var(--ink);font-family:var(--body)">WhatsApp me</a>
+          <a class="minibtn" href="tel:+919746679720" style="text-decoration:none;color:var(--ink);font-family:var(--body)">Call me</a>
+          <a class="minibtn" href="mailto:yksproductions893@gmail.com?subject=Enquiry%20from%20marketing.yksproductions.com" style="text-decoration:none;color:var(--ink);font-family:var(--body)">Email me</a>
+        </p>
       </div>
     </div>
 
@@ -2522,7 +2550,7 @@
       thirty days&rsquo; notice, and everything opens in your company&rsquo;s name on day one.</p>
     <p class="say">What you spend on 99acres or MagicBricks in a month, roughly how many enquiries that returns, and what you sell on average. <b>I will put your figures into this page and send it back.</b></p>
     <p class="say" style="color:var(--faint);font-size:15px;max-width:48ch;margin-bottom:30px">That takes me about an hour and there is no charge for it &mdash; and no meeting attached, because you should not have to sit through a pitch to find out what your money is currently buying. If what comes back is useful and you would rather hand it to somebody else, that is genuinely fine.</p>
-    <p class="say" data-geo-keep style="font-family:var(--mono);font-size:15px;color:var(--muted);max-width:none;margin:0 auto 28px">Yedukrishna Suresh &middot; <a href="tel:+919746679720" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(31,214,201,.35)">+91 97466 79720</a> (India) &middot; <a href="https://wa.me/971501955122" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(31,214,201,.35)" target="_blank" rel="noopener">+971 50 195 5122</a> (Dubai)</p>
+    <p class="say" style="font-family:var(--mono);font-size:15px;color:var(--muted);max-width:none;margin:0 auto 28px">Yedukrishna Suresh &middot; Bengaluru &middot; Dubai &middot; India and the UAE</p>
     <div class="btns">
       <a class="btn p" id="ctaWa" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20I%20read%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a>
       <a class="btn" data-geo-keep href="https://wa.me/971501955122?text=Hi%20Yedukrishna%20-%20I%20read%20your%20marketing%20page.%20I%27m%20in%20the%20UAE." target="_blank" rel="noopener">WhatsApp (Dubai)</a>
