@@ -309,3 +309,19 @@ footer.f a{color:var(--muted);display:inline-flex;min-height:44px;align-items:ce
 .lead form{margin-top:12px}
 .ok{color:var(--good)}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+
+/* Page gutters (one source of truth). Phones: clamp(20px,5vw,32px); tablets 32px; desktop 40px.
+   Never smaller than the iOS safe-area inset (viewport-fit=cover). !important so component
+   rules that set vertical padding with the shorthand (e.g. .hero{padding:44px 0}) can't zero it. */
+:root{--gx:clamp(20px,5vw,32px)}
+@media(min-width:768px){:root{--gx:32px}}
+@media(min-width:900px){:root{--gx:40px}}
+:root{--gl:max(var(--gx),env(safe-area-inset-left,0px));--gr:max(var(--gx),env(safe-area-inset-right,0px))}
+.wrap,.top .in{padding-left:var(--gl)!important;padding-right:var(--gr)!important}
+.mobar{padding-left:var(--gl);padding-right:var(--gr)}
+.drawer a{padding-left:var(--gl);padding-right:var(--gr)}
+/* Small phones (360-399px): keep brand + WhatsApp + Menu on one line inside the gutters */
+@media(max-width:399px){.top .in{gap:8px}.top .home{font-size:15px}.top .wa{padding:0 12px;font-size:14px}.menubtn{padding:0 10px;font-size:14px}}
+@media(max-width:339px){.top .home{font-size:14px;letter-spacing:-.01em}}
+/* Grid tracks must not grow past the gutter on narrow phones (a wide preview row pushed .stage to 340px at 360) */
+@media(max-width:767px){.sim{grid-template-columns:minmax(0,1fr)}}.sim>*{min-width:0}

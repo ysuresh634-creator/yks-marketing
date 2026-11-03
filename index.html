@@ -1077,6 +1077,14 @@ img,video,iframe{max-width:100%;height:auto}
 .whyg .w b{display:block;font-family:var(--disp);font-size:19px;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
 .whyg .w span{font-size:16px;line-height:1.55;color:var(--muted)}
 .whycta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+/* Page gutters (same as /ad-simulators/sim.css): phones clamp(20px,5vw,32px), tablets 32px, desktop 40px,
+   never under the iOS safe-area inset. !important so vertical-padding shorthands (.creedgrid, .actin) can't zero it. */
+:root{--gx:clamp(20px,5vw,32px)}
+@media(min-width:768px){:root{--gx:32px}}
+@media(min-width:900px){:root{--gx:40px}}
+:root{--gl:max(var(--gx),env(safe-area-inset-left,0px));--gr:max(var(--gx),env(safe-area-inset-right,0px))}
+.wrap,.chapnav .in{padding-left:var(--gl)!important;padding-right:var(--gr)!important}
+.mobar{padding-left:var(--gl);padding-right:var(--gr)}
 </style>
 </head>
 <body>
