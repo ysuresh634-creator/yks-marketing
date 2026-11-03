@@ -1034,6 +1034,50 @@
     :root{--ink:#111;--muted:#444;--faint:#666;--surface:#fff;--surface2:#f6f6f6;--line:#ccc;--line2:#e5e5e5;--bg:#fff}
   }
 </style>
+<style id="resp-2026-11">
+/* Responsive pass (Nov 2026): tap targets, readable type, iOS input zoom, mobile menu, Why section */
+.chapnav a{min-height:44px;display:inline-flex;align-items:center;font-size:14.5px;box-sizing:border-box}
+.chapnav .cta{min-height:44px;padding:0 14px;box-sizing:border-box;display:inline-flex;align-items:center;margin-top:0;margin-bottom:0}
+.chapnav .menu{display:none;margin-left:auto;flex:none;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:4px;min-height:44px;min-width:44px;padding:0 14px;font:600 15px var(--body);cursor:pointer}
+.chapnav .xtra{color:var(--muted)}
+.chapdrawer{display:none;max-width:1060px;margin:0 auto;padding:6px 20px 14px}
+.chapdrawer a{display:flex;align-items:center;min-height:48px;color:var(--ink);text-decoration:none;font-size:17px;border-bottom:1px solid var(--line2)}
+.chapnav.open .chapdrawer{display:block}
+@media(max-width:899px){.chapnav .in a[data-a],.chapnav .in .xtra{display:none}.chapnav .menu{display:inline-flex;align-items:center}.chapnav .cta{display:inline-flex!important;margin-left:8px}}
+@media(max-width:359px){.chapnav .cta{display:none!important}}
+.topline .tlnav{display:flex;gap:6px;flex-wrap:wrap}
+.topline .tlnav a{min-height:44px;display:inline-flex;align-items:center;padding:0 4px;border-bottom:0}
+.topline > a{min-height:44px;display:inline-flex;align-items:center}
+.curpick select,.fld input,.fld select,.fld textarea,.clientname,input,select,textarea{font-size:16px!important}
+@media(max-width:1024px){
+ .curpick select,.fld input,.fld select,input:not([type=checkbox]):not([type=radio]):not([type=range]),select{min-height:44px}
+ .minibtn,.anntog,.seg button,.simtabs button{min-height:44px}
+ .minibtn{font-size:14.5px;padding:10px 16px}
+ .anntog{font-size:14.5px;padding:10px 16px}
+ .simtabs button{font-size:13px}
+ .seg button{font-size:15px}
+}
+@media(max-width:760px){
+ .tiny,.disclaim,.cite,.worth .cite,.colo .ct,.barcap,.simfoot,.fld .hint,.planprev,.audnote,.numl,.kpi .d,.gt .full,td{font-size:13.5px!important}
+ .fld .hint,.simfoot,.worth .cite{font-size:14px!important}
+ .curpick label{font-size:14px}
+ .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+ .mobar a{min-height:48px;display:flex;align-items:center;justify-content:center}
+ body{padding-bottom:calc(78px + env(safe-area-inset-bottom))!important}
+ .mobar{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+ nav[aria-label="Dubai and UAE services"] a{display:inline-block;padding:6px 0}
+}
+@media(min-width:700px) and (max-width:1024px){
+ .whyg{grid-template-columns:1fr 1fr}
+}
+img,video,iframe{max-width:100%;height:auto}
+.whyg{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+@media(min-width:1025px){.whyg{grid-template-columns:repeat(3,1fr)}}
+.whyg .w{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px}
+.whyg .w b{display:block;font-family:var(--disp);font-size:19px;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+.whyg .w span{font-size:16px;line-height:1.55;color:var(--muted)}
+.whycta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+</style>
 </head>
 <body>
 <script>
@@ -1179,8 +1223,16 @@
     <a href="#act3" data-a="act3">03 Cost</a>
     <a href="#act4" data-a="act4">04 The work</a>
     <a href="#act5" data-a="act5">05 Terms</a>
+    <a class="xtra" href="/ad-simulators/">Ad simulators</a>
+    <a class="xtra" href="/why-yks/">Why me</a>
+    <button class="menu" type="button" id="chapMenu" aria-expanded="false" aria-controls="chapDrawer">Menu</button>
     <a class="cta" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%20-%20saw%20your%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a>
   </div>
+  <div class="chapdrawer" id="chapDrawer">
+    <a href="#act1">01 What I do</a><a href="#act2">02 Proof</a><a href="#act3">03 Cost</a><a href="#act4">04 The work</a><a href="#act5">05 Terms</a>
+    <a href="/ad-simulators/">Ad simulators</a><a href="/why-yks/">Why work with me</a><a href="https://yksproductions.com/paid-ads-dubai.html">Paid ads in Dubai</a>
+  </div>
+
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -1188,6 +1240,7 @@
   <div class="wrap">
     <div class="topline">
       <a href="https://yksproductions.com/">YKS Productions</a>
+      <span class="tlnav"><a href="/ad-simulators/">Ad simulators</a><a href="/why-yks/">Why work with me</a></span>
       <span class="curpick">
         <label for="curSel">Show money in</label>
         <select id="curSel" aria-label="Display currency">
@@ -1292,6 +1345,24 @@
       The photographs live at <a href="https://yksproductions.com/">yksproductions.com</a>.
       <b>This page is about what happens after the footage exists</b> &mdash; where it runs, what it costs,
       and who owns the account it runs from.</p>
+  </div>
+</section>
+
+<!-- ============ WHY ME ============ -->
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Why work with me</p>
+    <h2>What changes when you hire me</h2>
+    <p class="say">I plan it, shoot it, edit it, run the ads and report on them myself. One person, start to finish.</p>
+    <div class="whyg">
+      <div class="w"><b>No hand-offs, no markup</b><span>Strategy, shoot, edit, ad buying and reporting all sit with me. Nothing gets lost between departments.</span></div>
+      <div class="w"><b>Made for ads</b><span>Shot for the feed it runs on: vertical, a hook in the first second, captions for sound-off.</span></div>
+      <div class="w"><b>Tested, not guessed</b><span>Several versions go live; I stop the weak ones and move budget to what works.</span></div>
+      <div class="w"><b>Honest reporting</b><span>What ran, what it cost, what it brought in, in plain words. If it did not work, I say so.</span></div>
+      <div class="w"><b>Fast turnaround</b><span>I shoot and edit myself, so new versions and fixes do not wait in a queue.</span></div>
+      <div class="w"><b>Dubai and India</b><span>I know both markets, what each platform costs there and what local audiences respond to.</span></div>
+    </div>
+    <div class="whycta"><a class="btn p" href="https://wa.me/919746679720?text=Hi%20Yedukrishna%2C%20I%20read%20why%20I%20should%20work%20with%20you.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp me</a><a class="btn" href="/why-yks/">Why work with me</a><a class="btn" href="/ad-simulators/">See your brand as an ad</a></div>
   </div>
 </section>
 
@@ -2592,11 +2663,12 @@
 <nav class="wrap" aria-label="Dubai and UAE services" style="padding:28px 0 8px;font-size:14px;line-height:1.9;color:var(--muted)">
   <p style="margin:0 0 6px"><b>In Dubai or the UAE?</b> Each service has its own page on the main site:</p>
   <p style="margin:0"><a href="https://yksproductions.com/dubai/">All Dubai &amp; UAE services</a> &middot; <a href="https://yksproductions.com/paid-ads-dubai.html">Meta, Google, TikTok &amp; Snapchat ads in Dubai</a> &middot; <a href="https://yksproductions.com/social-media-marketing-dubai.html">Social media management in Dubai</a> &middot; <a href="https://yksproductions.com/seo-dubai.html">SEO in Dubai</a> &middot; <a href="https://yksproductions.com/web-design-dubai.html">Web design in Dubai</a> &middot; <a href="https://yksproductions.com/linkedin-profile-optimisation-dubai.html">LinkedIn profile optimisation</a> &middot; <a href="https://yksproductions.com/content-creator-dubai.html">Content creator in Dubai</a> &middot; <a href="https://yksproductions.com/talent-management.html">Talent management</a></p>
+  <p style="margin:6px 0 0"><b>Try it first:</b> <a href="/ad-simulators/">Ad simulators for Instagram, TikTok, Snapchat, LinkedIn &amp; ChatGPT</a> &middot; <a href="/why-yks/">Why work with me</a></p>
 </nav>
 
 <footer class="wrap">
   <span>Yedukrishna Suresh &mdash; YKS Productions</span>
-  <span><a href="https://yksproductions.com/">yksproductions.com &#8599;</a></span>
+  <span><a href="/ad-simulators/">Ad simulators</a> &middot; <a href="/why-yks/">Why work with me</a> &middot; <a href="https://yksproductions.com/">yksproductions.com &#8599;</a></span>
 </footer>
 
 <script>
@@ -3762,7 +3834,7 @@
     var max = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (max > 0 ? Math.min(100, y / max * 100) : 0) + '%';
 
-    nav.classList.toggle('on', y > (hero ? hero.offsetHeight * 0.75 : 400));
+    nav.classList.toggle('on', nav.classList.contains('open') || y > (hero ? hero.offsetHeight * 0.75 : 400));
 
     var cur = -1;
     for (var i = 0; i < acts.length; i++){
@@ -3775,6 +3847,11 @@
   }, {passive:true});
   window.addEventListener('resize', update);
   update();
+  var mb = document.getElementById('chapMenu');
+  if (mb){
+    mb.addEventListener('click', function(){ var o = !nav.classList.contains('open'); nav.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); mb.textContent = o ? 'Close' : 'Menu'; if (o) nav.classList.add('on'); });
+    [].forEach.call(document.querySelectorAll('#chapDrawer a'), function(a){ a.addEventListener('click', function(){ nav.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'Menu'; }); });
+  }
 })();
 </script>
 
